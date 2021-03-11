@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/logInActivity">
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="com.example.quokka.unlogged.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+        <action
+            android:id="@+id/action_logInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_logInFragment_to_userMainScreenFragment"
+            app:destination="@id/userMainScreenFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.quokka.unlogged.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_logInFragment"
+            app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_showUsers"
+            app:destination="@id/showUsers" />
+    </fragment>
+    <fragment
+        android:id="@+id/userMainScreenFragment"
+        android:name="com.example.quokka.logged.UserMainScreenFragment"
+        android:label="fragment_user_main_screen"
+        tools:layout="@layout/fragment_user_main_screen" >
+        <action
+            android:id="@+id/action_userMainScreenFragment_to_userProfile"
+            app:destination="@id/userProfile" />
+        <action
+            android:id="@+id/action_userMainScreenFragment_to_availableTasksBrowser"
+            app:destination="@id/availableTasksBrowser" />
+        <action
+            android:id="@+id/action_userMainScreenFragment_to_addTaskScreen"
+            app:destination="@id/addTaskScreen" />
+        <action
+            android:id="@+id/action_userMainScreenFragment_to_userTasksFragment"
+            app:destination="@id/userTasksFragment" />
+        <action
+            android:id="@+id/action_userMainScreenFragment_to_inProgressFragment"
+            app:destination="@id/inProgressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/availableTasksBrowser"
+        android:name="com.example.quokka.logged.AvailableTasksBrowser"
+        android:label="fragment_available_tasks_browser"
+        tools:layout="@layout/fragment_available_tasks_browser" />
+    <fragment
+        android:id="@+id/userProfile"
+        android:name="com.example.quokka.logged.UserProfile"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/addTaskScreen"
+        android:name="com.example.quokka.AddTaskScreen"
+        android:label="fragment_add_task_screen"
+        tools:layout="@layout/fragment_add_task_screen" />
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.quokka.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/inProgressFragment"
+        android:name="com.example.quokka.logged.InProgressFragment"
+        android:label="InProgressFragment" />
+    <fragment
+        android:id="@+id/userTasksFragment"
+        android:name="com.example.quokka.logged.UserTasksFragment"
+        android:label="UserTasksFragment" />
+    <fragment
+        android:id="@+id/showUsers"
+        android:name="com.example.quokka.ShowUsers"
+        android:label="ShowUsers" >
+        <action
+            android:id="@+id/action_showUsers_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/logInActivity"
+        android:name="com.example.quokka.unlogged.LogInActivity"
+        android:label="LogInActivity" />
+</navigation>

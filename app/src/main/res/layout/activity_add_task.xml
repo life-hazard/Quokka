@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".logged.AddTaskActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/availablePoints"
+                style="@style/text_style"
+                android:layout_width="75dp"
+                android:layout_height="56dp"
+                android:text="@string/number_of_points"
+                android:textAlignment="center"
+                android:textSize="32sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.042" />
+
+            <ScrollView
+                android:id="@+id/scrollView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/availablePoints"
+                app:layout_constraintVertical_bias="0.133">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/taskNameEdit"
+                        style="@style/text_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:ems="10"
+                        android:hint="@string/task_name_hint"
+                        android:inputType="textPersonName"
+                        android:paddingTop="@dimen/task_box_padding"
+                        android:paddingEnd="@dimen/task_box_padding" />
+
+                    <EditText
+                        android:id="@+id/taskDescriptionEdit"
+                        style="@style/text_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:hint="@string/task_desctiption_hint"
+                        android:inputType="textMultiLine"
+                        android:paddingTop="@dimen/task_box_padding"
+                        android:paddingEnd="@dimen/task_box_padding" />
+
+                    <EditText
+                        android:id="@+id/startDateEdit"
+                        style="@style/text_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:ems="10"
+                        android:hint="@string/start_date_hint"
+                        android:inputType="date"
+                        android:paddingTop="@dimen/task_box_padding" />
+
+                    <EditText
+                        android:id="@+id/endDateEdit"
+                        style="@style/text_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:ems="10"
+                        android:hint="@string/end_date_hint"
+                        android:inputType="date"
+                        android:paddingTop="@dimen/task_box_padding" />
+
+                    <EditText
+                        android:id="@+id/pointsForTask"
+                        style="@style/text_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:ems="10"
+                        android:hint="@string/points_for_task_hint"
+                        android:inputType="number"
+                        android:paddingTop="@dimen/task_box_padding"
+                        android:paddingEnd="@dimen/task_box_padding" />
+                    
+                </LinearLayout>
+            </ScrollView>
+
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/scrollView4"
+                app:layout_constraintVertical_bias="0.338" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

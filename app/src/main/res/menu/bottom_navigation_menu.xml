@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_in_progress"
+        android:icon="@drawable/ic_in_progress_icon"
+        android:title="@string/in_progress"/>
+
+    <item
+        android:id="@+id/ic_my_tasks"
+        android:icon="@drawable/ic_my_tasks_icon"
+        android:title="@string/my_tasks"/>
+
+    <item
+        android:id="@+id/ic_browse"
+        android:icon="@drawable/ic_browse_icon"
+        android:title="@string/browse"/>
+
+    <item
+        android:id="@+id/ic_add_task"
+        android:icon="@drawable/ic_add_icon"
+        android:title="@string/add_task"/>
+
+</menu>
