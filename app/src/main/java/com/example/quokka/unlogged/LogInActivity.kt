@@ -14,6 +14,7 @@ import com.example.quokka.logged.UserHomePageActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.example.quokka.recyclerview.FirebaseManager
 
 class LogInActivity : AppCompatActivity() {
 
@@ -32,6 +33,9 @@ class LogInActivity : AppCompatActivity() {
         val intent1 = Intent(this, SignUpActivity::class.java)
 
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+
+        val s = FirebaseManager()
+        s.getAllTasks()
 
         binding.logInButton.setOnClickListener {
             logIn()

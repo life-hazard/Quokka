@@ -6,8 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.quokka.R
 import com.example.quokka.databinding.FragmentUserTasksBinding
+import com.example.quokka.recyclerview.TaskAdapter
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.fragment_user_tasks.*
 
 //  Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,6 +28,12 @@ class UserTasksFragment : Fragment() {
 
     private lateinit var binding: FragmentUserTasksBinding
 
+    //private lateinit var linearLayoutManager: LinearLayoutManager
+
+    lateinit var adapter: TaskAdapter
+
+    val db = Firebase.firestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,8 +44,14 @@ class UserTasksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate<FragmentUserTasksBinding>(inflater, R.layout.fragment_user_tasks, container, false)
+
+        //linearLayoutManager = LinearLayoutManager(context)
+        //userTasksRecyclerView.layoutManager = linearLayoutManager
+
+        //addTasks()
+
+
         return binding.root
     }
-
 
 }
