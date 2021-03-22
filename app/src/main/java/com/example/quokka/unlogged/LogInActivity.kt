@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.example.quokka.recyclerview.FirebaseManager
+import com.google.android.material.snackbar.Snackbar
 
 class LogInActivity : AppCompatActivity() {
 
@@ -64,31 +65,41 @@ class LogInActivity : AppCompatActivity() {
 
         val intent = Intent(this, UserHomePageActivity::class.java)
 
+
         db.collection("users").whereEqualTo("email", email)
             .whereEqualTo("password", password)
             .get()
             .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d(LogInFragment.TAG, "${document.id} => $document.data")
-                    //val dbPassword = document.getString("password")
-                    sharedUserId = document.id
+                Log.i(TAG, "Empty document looks like that: ${documents.isEmpty}")
+                if (documents.isEmpty) {
+                    Snackbar.make(binding.root, "Wrong Email or Password", Snackbar.LENGTH_LONG).show()
+                } else {
+                    for (document in documents) {
+                        Log.d(LogInFragment.TAG, "${document.id} => $document.data")
+                        //val dbPassword = document.getString("password")
+                        sharedUserId = document.id
 
-                    // Setting user id into shared preferences so that its available always:
-                    // Set a shared preference
-                    val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                    editor.putString("id_key", sharedUserId)
-                    editor.apply()
-                    editor.commit()
+                        // Setting user id into shared preferences so that its available always:
+                        // Set a shared preference
+                        val sharedPreferences: SharedPreferences =
+                            this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putString("id_key", sharedUserId)
+                        editor.apply()
+                        editor.commit()
 
-                    Log.d(LogInFragment.TAG, "The user ID in shared preferences: $sharedUserId ")
+                        Log.d(
+                            LogInFragment.TAG,
+                            "The user ID in shared preferences: $sharedUserId "
+                        )
 
-                    Log.d(LogInFragment.TAG, sharedUserId)
-                    this.startActivity(intent)
+                        Log.d(LogInFragment.TAG, sharedUserId)
+                        this.startActivity(intent)
+                    }
                 }
             }.addOnFailureListener { e ->
                 Log.w(LogInFragment.TAG, "Error getting documents: ", e)
-                Toast.makeText(this, "Wrong email or password.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error getting documents.", Toast.LENGTH_SHORT).show()
             }
 
     }

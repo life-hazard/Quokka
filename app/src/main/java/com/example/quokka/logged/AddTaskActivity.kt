@@ -6,15 +6,22 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.FrameLayout
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.databinding.DataBindingUtil
 import com.example.quokka.R
 import com.example.quokka.databinding.ActivityAddTaskBinding
 import com.example.quokka.util.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.delay
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.sql.Timestamp
@@ -23,7 +30,6 @@ import java.time.LocalDate
 import java.time.ZoneOffset
 
 
-@Suppress("DEPRECATION") // for Timestamp
 class AddTaskActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddTaskBinding
@@ -39,15 +45,15 @@ class AddTaskActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_task)
 
-        val intent = Intent(this, UserHomePageActivity::class.java)
 
         binding.addButton.setOnClickListener() {
+
+            // disable button and display loading
+            showProgressBar()
+
             validateData()
-            //getCurrentTime()
-            //dateToTimeMap("20.03.2020")
             createTask()
-            // TODO: clean text edits, notification about adding to db and add a button to go back
-            this.startActivity(intent)
+            // TODO: clean text edits, notification about adding to db, and add a button to go back
         }
 
     }
@@ -55,6 +61,7 @@ class AddTaskActivity : AppCompatActivity() {
     private fun createTask() {
         if (!validateData()) {
             Log.i(TAG, "invalid task info")
+            hideProgressBar()
             return
         }
         Log.i(TAG, "valid task info")
@@ -100,6 +107,14 @@ class AddTaskActivity : AppCompatActivity() {
             Log.w(TAG, "Error adding document", e)
             Log.i("addTask", "error adding document")
         }
+
+        // TODO Add back button instead of going back
+        val intent = Intent(this, UserHomePageActivity::class.java)
+        this.startActivity(intent)
+
+        // The snackbar disappears too quickly but the toast stays longer
+        Snackbar.make(binding.root, "Task successfully added.", Snackbar.LENGTH_LONG).show()
+        Toast.makeText(this, "Task successfully added.", Toast.LENGTH_LONG).show()
 
         //TODO("Change to date format")
     }
@@ -191,6 +206,17 @@ class AddTaskActivity : AppCompatActivity() {
         return valid
 
     }
+
+    private fun showProgressBar() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.addButton.visibility = View.GONE
+    }
+
+    private fun hideProgressBar() {
+        binding.progressBar.visibility = View.GONE
+        binding.addButton.visibility = View.VISIBLE
+    }
+
     companion object {
         const val TAG = "addTask"
     }

@@ -1,15 +1,21 @@
 package com.example.quokka.logged
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.quokka.R
 import com.example.quokka.databinding.FragmentUserTasksBinding
 import com.example.quokka.recyclerview.TaskAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_user_tasks.*
@@ -23,16 +29,27 @@ private const val ARG_PARAM2 = "param2"
  * A simple [Fragment] subclass.
  * Use the [UserTasksFragment.newInstance] factory method to
  * create an instance of this fragment.
+ *
+ * Holds the tasks made by the logged user
  */
+data class UserTaskModel(
+    val taskName: String = "",
+    val startDate: Map<String, Int> = mapOf("k" to -1),
+    val endDate: Map<String, Int> = mapOf("k" to -1),
+    val points: Int = -1
+)
+
+class UserTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
 class UserTasksFragment : Fragment() {
 
     private lateinit var binding: FragmentUserTasksBinding
 
-    //private lateinit var linearLayoutManager: LinearLayoutManager
-
     lateinit var adapter: TaskAdapter
 
     val db = Firebase.firestore
+
+    private val sharedPrefFile = "kotlinsharedpreference"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,15 +60,59 @@ class UserTasksFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate<FragmentUserTasksBinding>(inflater, R.layout.fragment_user_tasks, container, false)
+        binding = DataBindingUtil.inflate<FragmentUserTasksBinding>(
+            inflater,
+            R.layout.fragment_user_tasks,
+            container,
+            false
+        )
 
-        //linearLayoutManager = LinearLayoutManager(context)
-        //userTasksRecyclerView.layoutManager = linearLayoutManager
+        // getting from shared preferences
 
-        //addTasks()
 
+        val sharedPreferences: SharedPreferences =
+            requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val sharedIdValue = sharedPreferences.getString("id_key", "default_value")
+
+        Log.d(TAG, "The id from shared preferences: ${sharedIdValue.toString()}")
+
+        val query = db.collection("tasks").whereEqualTo("ownerId", sharedIdValue)
+        val options = FirestoreRecyclerOptions.Builder<UserTaskModel>().setQuery(query, UserTaskModel::class.java).setLifecycleOwner(this).build()
+
+        val adapter = object: FirestoreRecyclerAdapter<UserTaskModel, UserTaskViewHolder>(options) {
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserTaskViewHolder {
+                val view: View = LayoutInflater.from(context).inflate(R.layout.recyclerview_item_row, parent, false)
+                return UserTaskViewHolder(view)
+            }
+
+            override fun onBindViewHolder(
+                holder: UserTaskViewHolder,
+                position: Int,
+                model: UserTaskModel
+            ) {
+                val tvName: TextView = holder.itemView.findViewById(R.id.itemTaskName)
+                val tvStartDate: TextView = holder.itemView.findViewById(R.id.itemStartDate)
+                val tvEndDate: TextView = holder.itemView.findViewById(R.id.itemEndDate)
+                val tvPoints: TextView = holder.itemView.findViewById(R.id.itemPointsForTask)
+
+                tvName.text = model.taskName
+                val start = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"
+                tvStartDate.text = start
+                //tvStartDate.text = model.startDate.values.toString()
+                val end = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"
+                tvEndDate.text = end
+                //tvEndDate.text = model.endDate.values.toString()
+                tvPoints.text = model.points.toString()
+            }
+
+        }
+
+        binding.userTasksRecyclerView.adapter = adapter
 
         return binding.root
     }
 
+    companion object {
+        const val TAG = "tagz"
+    }
 }

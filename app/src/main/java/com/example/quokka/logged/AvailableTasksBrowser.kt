@@ -1,6 +1,9 @@
 package com.example.quokka.logged
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -51,6 +54,7 @@ class AvailableTasksBrowser : Fragment() {
     private lateinit var binding: FragmentAvailableTasksBrowserBinding
     private lateinit var auth: FirebaseAuth
     val db = Firebase.firestore
+    private val sharedPrefFile = "kotlinsharedpreference"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +68,15 @@ class AvailableTasksBrowser : Fragment() {
         binding = DataBindingUtil.inflate<FragmentAvailableTasksBrowserBinding>(inflater, R.layout.fragment_available_tasks_browser, container, false)
 
         auth = Firebase.auth
-        val query = db.collection("tasks")
+
+        val sharedPreferences: SharedPreferences =
+            requireActivity().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val sharedIdValue = sharedPreferences.getString("id_key", "default_value")
+
+        Log.d(UserTasksFragment.TAG, "The id from shared preferences: ${sharedIdValue.toString()}")
+
+        val query = db.collection("tasks").whereNotEqualTo("ownerId", sharedIdValue)
+
         val options = FirestoreRecyclerOptions.Builder<TaskModel1>().setQuery(query, TaskModel1::class.java)
             .setLifecycleOwner(this).build()
 
@@ -102,4 +114,5 @@ class AvailableTasksBrowser : Fragment() {
         return binding.root
     }
 
+    // TODO: Add CardView to recyclerview_item_row and edit the points cuz it doesn't scale
 }

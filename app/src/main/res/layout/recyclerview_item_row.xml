@@ -8,6 +8,21 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="370dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="130dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?android:attr/listDivider"
+        android:background="@color/teal_200"/>
+
+    <ImageView
         android:id="@+id/itemImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -18,7 +33,10 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.74"
+        />
+
+
 
     <ImageView
         android:id="@+id/pointBcg"
@@ -51,11 +69,11 @@
         android:layout_height="26dp"
         android:layout_gravity="top|end"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="33dp"
+        android:layout_marginEnd="20dp"
         android:layout_weight="0"
-        android:textSize="20dp"
         android:text="Task Name"
         android:textColor="#353535"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/itemDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"

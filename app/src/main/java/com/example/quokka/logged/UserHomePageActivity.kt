@@ -30,6 +30,7 @@ class UserHomePageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_home_page)
 
+        // back_arrow is in fact a part of the toolbar that I modified
         val userProfile: ImageView = findViewById(R.id.back_arrow)
 
         val homeFragment = AvailableTasksBrowser()
@@ -47,7 +48,6 @@ class UserHomePageActivity : AppCompatActivity() {
                 R.id.ic_in_progress -> makeCurrentFragment(inProgress)
                 R.id.ic_my_tasks -> makeCurrentFragment(myTasks)
                 R.id.ic_browse -> makeCurrentFragment(homeFragment)
-                //R.id.ic_add_task -> makeCurrentFragment(addTask)
             }
             true
         }

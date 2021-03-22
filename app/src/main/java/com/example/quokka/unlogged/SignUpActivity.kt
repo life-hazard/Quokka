@@ -41,6 +41,7 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signUpButtonSignUpA.setOnClickListener {
             //insertDataToDatabase()
+            showProgressBar()
             createDoc()
         }
     }
@@ -57,6 +58,7 @@ class SignUpActivity : AppCompatActivity() {
 
         if (!validateUser()) {
             Log.i("dblog", "invalid user")
+            hideProgressBar()
             return
         }
         Log.i("dblog", "valid user")
@@ -124,6 +126,20 @@ class SignUpActivity : AppCompatActivity() {
         } else {
             binding.emailEditTextSignUpA.error = null
         }
+
+        // If email in db
+        val db = Firebase.firestore
+
+        db.collection("users").whereEqualTo("email", email).get().addOnSuccessListener {document ->
+            if (!document.isEmpty) {
+                binding.emailEditTextSignUpA.error = "User with this email already exists"
+                valid = false
+            } else {
+                binding.emailEditTextSignUpA.error = null
+                valid = true
+            }
+        }
+
 
         val password = binding.passwordEditTextSignUpA.text.toString()
         val passwordCheck = binding.password2EditTextSignUpA.text.toString()
@@ -198,5 +214,4 @@ class SignUpActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "dblog"
     }
-
 }

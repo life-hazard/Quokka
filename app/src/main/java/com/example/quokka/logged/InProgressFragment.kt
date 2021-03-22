@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.*
  * A simple [Fragment] subclass.
  * Use the [InProgressFragment.newInstance] factory method to
  * create an instance of this fragment.
+ *
+ * Holds Tasks that logged user said they'll complete
  */
 class InProgressFragment : Fragment() {
 
