@@ -83,7 +83,7 @@ class AvailableTasksBrowser : Fragment() {
         // SHOULD BE A SEPARATE CLASS FILE
         val adapter = object: FirestoreRecyclerAdapter<TaskModel1, TaskViewHolder1>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder1 {
-                val view: View = LayoutInflater.from(context).inflate(R.layout.recyclerview_item_row, parent, false)
+                val view: View = LayoutInflater.from(context).inflate(R.layout.recyclerview_task_item, parent, false)
                 return TaskViewHolder1(view)
             }
 
@@ -93,9 +93,9 @@ class AvailableTasksBrowser : Fragment() {
                 model: TaskModel1
             ) {
                 val tvName: TextView = holder.itemView.findViewById(R.id.itemTaskName)
-                val tvStartDate: TextView = holder.itemView.findViewById(R.id.itemStartDate)
-                val tvEndDate: TextView = holder.itemView.findViewById(R.id.itemEndDate)
-                val tvPoints: TextView = holder.itemView.findViewById(R.id.itemPointsForTask)
+                val tvStartDate: TextView = holder.itemView.findViewById(R.id.itemTaskStartDate)
+                val tvEndDate: TextView = holder.itemView.findViewById(R.id.itemTaskEndDate)
+                val tvPoints: TextView = holder.itemView.findViewById(R.id.itemTaskPoints)
 
                 tvName.text = model.taskName
                 val start = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"

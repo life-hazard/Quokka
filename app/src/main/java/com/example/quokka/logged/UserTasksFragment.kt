@@ -1,6 +1,7 @@
 package com.example.quokka.logged
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.quokka.R
@@ -16,6 +18,7 @@ import com.example.quokka.databinding.FragmentUserTasksBinding
 import com.example.quokka.recyclerview.TaskAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_user_tasks.*
@@ -39,7 +42,13 @@ data class UserTaskModel(
     val points: Int = -1
 )
 
-class UserTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class UserTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    init {
+        itemView.setOnClickListener() {
+            Snackbar.make(itemView, "CLICKED", Snackbar.LENGTH_SHORT).show()
+        }
+    }
+}
 
 class UserTasksFragment : Fragment() {
 
@@ -80,8 +89,9 @@ class UserTasksFragment : Fragment() {
         val options = FirestoreRecyclerOptions.Builder<UserTaskModel>().setQuery(query, UserTaskModel::class.java).setLifecycleOwner(this).build()
 
         val adapter = object: FirestoreRecyclerAdapter<UserTaskModel, UserTaskViewHolder>(options) {
+
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserTaskViewHolder {
-                val view: View = LayoutInflater.from(context).inflate(R.layout.recyclerview_item_row, parent, false)
+                val view: View = LayoutInflater.from(context).inflate(R.layout.recyclerview_task_item, parent, false)
                 return UserTaskViewHolder(view)
             }
 
@@ -91,9 +101,9 @@ class UserTasksFragment : Fragment() {
                 model: UserTaskModel
             ) {
                 val tvName: TextView = holder.itemView.findViewById(R.id.itemTaskName)
-                val tvStartDate: TextView = holder.itemView.findViewById(R.id.itemStartDate)
-                val tvEndDate: TextView = holder.itemView.findViewById(R.id.itemEndDate)
-                val tvPoints: TextView = holder.itemView.findViewById(R.id.itemPointsForTask)
+                val tvStartDate: TextView = holder.itemView.findViewById(R.id.itemTaskStartDate)
+                val tvEndDate: TextView = holder.itemView.findViewById(R.id.itemTaskEndDate)
+                val tvPoints: TextView = holder.itemView.findViewById(R.id.itemTaskPoints)
 
                 tvName.text = model.taskName
                 val start = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"
@@ -103,7 +113,14 @@ class UserTasksFragment : Fragment() {
                 tvEndDate.text = end
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
+
+//                holder.itemView.setOnClickListener() {
+//                    Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
+//                    val intent = Intent(context, AddTaskActivity::class.java)
+//                    context?.startActivity(intent)
+//                }
             }
+
 
         }
 

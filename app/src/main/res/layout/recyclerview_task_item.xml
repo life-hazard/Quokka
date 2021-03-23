@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="220dp">
+
+
+    <!-- A CardView that contains a TextView -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        card_view:cardCornerRadius="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground">
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent">-->
+
+        <TextView
+            android:id="@+id/itemTaskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="40dp"
+            android:text="Task Name"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/itemTaskStartDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="50dp"
+            android:text="Start Date"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/itemTaskStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="100dp"
+            android:text="00.00.0000"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/itemTaskEndDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="130dp"
+            android:layout_marginEnd="50dp"
+            android:text="End Date"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/itemTaskEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="130dp"
+            android:text="00.00.0000"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/itemTaskPointsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="60dp"
+            android:text="points for the task: "
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/itemTaskPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="30dp"
+            android:text="1"
+            android:textSize="16dp" />
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

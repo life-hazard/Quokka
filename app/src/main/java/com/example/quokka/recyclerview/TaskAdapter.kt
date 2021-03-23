@@ -20,9 +20,9 @@ class TaskAdapter(val context: Context, val taskList: ArrayList<TaskModel>): Rec
 
     inner class TaskHolder(view: View?): RecyclerView.ViewHolder(view!!) {
         val txtName = view?.findViewById<TextView>(R.id.itemTaskName)
-        val txtStart = view?.findViewById<TextView>(R.id.itemStartDate)
-        val txtEnd = view?.findViewById<TextView>(R.id.itemEndDate)
-        val txtPoints = view?.findViewById<TextView>(R.id.itemPointsForTask)
+        val txtStart = view?.findViewById<TextView>(R.id.itemTaskStartDate)
+        val txtEnd = view?.findViewById<TextView>(R.id.itemTaskEndDate)
+        val txtPoints = view?.findViewById<TextView>(R.id.itemTaskPoints)
 
         fun bind(tasks: TaskModel, context: Context) {
             txtName?.text = tasks.taskName

@@ -8,12 +8,12 @@ import kotlinx.android.synthetic.main.recyclerview_item_row.view.*
 
 class TaskHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-    fun bindTask(task: TaskModel?) {
-        with(task!!) {
-            itemView.itemTaskName.text = taskName
-            itemView.itemStartDate.text = taskStart
-            itemView.itemEndDate.text = taskEnd
-            itemView.itemPointsForTask.text = taskPoints.toString()
-        }
-    }
+//    fun bindTask(task: TaskModel?) {
+//        with(task!!) {
+//            itemView.itemTaskName.text = taskName
+//            itemView.itemStartDate.text = taskStart
+//            itemView.itemEndDate.text = taskEnd
+//            itemView.itemPointsForTask.text = taskPoints.toString()
+//        }
+//    }
 }

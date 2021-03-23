@@ -123,4 +123,8 @@ dependencies {
     implementation "com.google.firebase:firebase-firestore-ktx"
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
 
+    // CardView for RecyclerView
+    implementation "androidx.cardview:cardview:1.0.0"
+
+
 }
