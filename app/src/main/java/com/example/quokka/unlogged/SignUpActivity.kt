@@ -22,6 +22,7 @@ import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 import com.example.quokka.util.User
 import com.google.android.gms.common.api.internal.GoogleServices.initialize
+import com.google.firebase.database.ktx.database
 import com.google.firebase.firestore.ktx.firestore
 
 class SignUpActivity : AppCompatActivity() {
@@ -42,6 +43,7 @@ class SignUpActivity : AppCompatActivity() {
         binding.signUpButtonSignUpA.setOnClickListener {
             //insertDataToDatabase()
             showProgressBar()
+
             createDoc()
         }
     }
@@ -55,13 +57,16 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun createDoc() {
+        hideProgressBar()
 
         if (!validateUser()) {
             Log.i("dblog", "invalid user")
-            hideProgressBar()
             return
         }
+
+
         Log.i("dblog", "valid user")
+
 
         val name = binding.nameTextEditSignUpA.text.toString().trim()
         val surname = binding.surnameEditTextSignUpA.text.toString().trim()
@@ -75,14 +80,12 @@ class SignUpActivity : AppCompatActivity() {
         val user = User(name, surname, email, password, address, rating)
 
         db.collection("users").add(user).addOnSuccessListener { documentReference ->
-            Log.d(TAG,"DocumentSnapshot written with ID: ${documentReference.id}")
+            Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
             Log.i("dblog", "created document")
         }.addOnFailureListener { e ->
             Log.w(TAG, "Error adding document", e)
             Log.i("dblog", "error adding document")
         }
-
-
     }
 
     private fun reload() {
@@ -104,7 +107,7 @@ class SignUpActivity : AppCompatActivity() {
     private fun validateUser(): Boolean {
         var valid = true
         val name = binding.nameTextEditSignUpA.text.toString().trim()
-        if(TextUtils.isEmpty(name)) {
+        if (TextUtils.isEmpty(name)) {
             binding.nameTextEditSignUpA.error = "Required."
             valid = false
         } else {
@@ -112,44 +115,54 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         val surname = binding.surnameEditTextSignUpA.text.toString().trim()
-        if(TextUtils.isEmpty(surname)) {
+        if (TextUtils.isEmpty(surname)) {
             binding.surnameEditTextSignUpA.error = "Required."
             valid = false
         } else {
             binding.surnameEditTextSignUpA.error = null
         }
 
+        val db = Firebase.firestore
+
         val email = binding.emailEditTextSignUpA.text.toString().trim()
-        if(TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) {
             binding.emailEditTextSignUpA.error = "Required."
             valid = false
         } else {
-            binding.emailEditTextSignUpA.error = null
-        }
-
-        // If email in db
-        val db = Firebase.firestore
-
-        db.collection("users").whereEqualTo("email", email).get().addOnSuccessListener {document ->
-            if (!document.isEmpty) {
-                binding.emailEditTextSignUpA.error = "User with this email already exists"
-                valid = false
-            } else {
+//            val isEmpty = db.collection("users").whereEqualTo("email", email).get().result?.isEmpty
+//            if (isEmpty == true) {
+//                Log.i(TAG, "There are no users with this mail: $isEmpty")
                 binding.emailEditTextSignUpA.error = null
-                valid = true
-            }
+//            } else {
+//                Log.i(TAG, "User already in db: $isEmpty")
+//                binding.emailEditTextSignUpA.error = "User with this email already exists"
+//                valid = false
+//            }
+            // If email in db
+//            val db = Firebase.firestore
+//
+//            db.collection("users").whereEqualTo("email", email).get().addOnCompleteListener {document ->
+//                if (!document.result?.isEmpty!!) {
+//                    Log.i(TAG, "User already in db: ${document.toString()}")
+//                    binding.emailEditTextSignUpA.error = "User with this email already exists"
+//                    valid = false
+//                } else {
+//                    Log.i(TAG, "There are no users with this mail: $document")
+//                    binding.emailEditTextSignUpA.error = null
+//
+//                }
+//            }
         }
-
 
         val password = binding.passwordEditTextSignUpA.text.toString()
         val passwordCheck = binding.password2EditTextSignUpA.text.toString()
-        if(TextUtils.isEmpty(password) && TextUtils.isEmpty(passwordCheck)) {
+        if (TextUtils.isEmpty(password) && TextUtils.isEmpty(passwordCheck)) {
             binding.passwordEditTextSignUpA.error = "Required."
             binding.password2EditTextSignUpA.error = "Required"
             valid = false
         } else {
             binding.passwordEditTextSignUpA.error = null
-            if(password != passwordCheck) {
+            if (password != passwordCheck) {
                 binding.password2EditTextSignUpA.error = "Wrong password."
                 valid = false
             } else {
@@ -158,7 +171,7 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         val address = binding.addressEditTextSignUpA.text.toString().trim()
-        if(TextUtils.isEmpty(address)) {
+        if (TextUtils.isEmpty(address)) {
             binding.addressEditTextSignUpA.error = "Required."
             valid = false
         } else {
@@ -169,7 +182,15 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    private fun createAccount(name: String, username: String, email: String, password:String, passwordCheck: String, address:String, rating: Int) {
+    private fun createAccount(
+        name: String,
+        username: String,
+        email: String,
+        password: String,
+        passwordCheck: String,
+        address: String,
+        rating: Int
+    ) {
         Log.d(ContentValues.TAG, "createAccount:$email")
         if (!validateUser()) {
             return
@@ -181,7 +202,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun signIn(email: String, password: String) {
         Log.d(TAG, "signIn:$email")
-        if(!validateUser()) {
+        if (!validateUser()) {
             return
         }
         showProgressBar()

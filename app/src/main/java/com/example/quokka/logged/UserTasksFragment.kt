@@ -114,11 +114,11 @@ class UserTasksFragment : Fragment() {
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
 
-//                holder.itemView.setOnClickListener() {
-//                    Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
-//                    val intent = Intent(context, AddTaskActivity::class.java)
-//                    context?.startActivity(intent)
-//                }
+                holder.itemView.setOnClickListener() {
+                    Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, AddTaskActivity::class.java)
+                    context?.startActivity(intent)
+                }
             }
 
 

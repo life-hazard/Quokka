@@ -1,6 +1,7 @@
 package com.example.quokka.logged
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -105,6 +107,12 @@ class AvailableTasksBrowser : Fragment() {
                 tvEndDate.text = end
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
+
+                holder.itemView.setOnClickListener() {
+                    Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(context, AddTaskActivity::class.java)
+                    context?.startActivity(intent)
+                }
             }
 
         }
