@@ -8,5 +8,6 @@ data class User(
     var email: String,
     var password: String,
     var address: String,
-    var rating: Int
+    var rating: Int,
+    var points: Int
 )

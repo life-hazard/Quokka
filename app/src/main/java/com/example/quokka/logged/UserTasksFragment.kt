@@ -142,7 +142,7 @@ class UserTasksFragment : Fragment() {
                     intent.putExtra("fullEndDate", end)
                     intent.putExtra("fullPoints", model.points)
                     intent.putExtra("fullTaskOwnerId", model.ownerId)
-                    
+
 
 
                     context!!.startActivity(intent) // start Intent

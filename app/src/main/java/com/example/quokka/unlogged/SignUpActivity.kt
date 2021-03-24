@@ -74,10 +74,11 @@ class SignUpActivity : AppCompatActivity() {
         val password = binding.passwordEditTextSignUpA.text.toString()
         val address = binding.addressEditTextSignUpA.text.toString()
         val rating = -1
+        val points = -1
 
         val db = Firebase.firestore
 
-        val user = User(name, surname, email, password, address, rating)
+        val user = User(name, surname, email, password, address, rating, points)
 
         db.collection("users").add(user).addOnSuccessListener { documentReference ->
             Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")

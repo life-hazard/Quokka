@@ -1,6 +1,5 @@
 package com.example.quokka.logged
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,17 +9,10 @@ import androidx.databinding.DataBindingUtil
 import com.example.quokka.databinding.ActivityUserHomePageBinding
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.quokka.AddTaskScreen
 import com.example.quokka.R
-import com.example.quokka.ShowUsers
-import com.example.quokka.UserProfileActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.example.quokka.MainActivity
-import com.example.quokka.unlogged.SignUpActivity
 
 class UserHomePageActivity : AppCompatActivity() {
 

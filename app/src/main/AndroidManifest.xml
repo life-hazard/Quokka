@@ -16,7 +16,7 @@
         <activity android:name=".unlogged.LogInActivity" />
         <activity android:name=".unlogged.SignUpActivity" />
         <activity
-            android:name=".UserProfileActivity"
+            android:name=".logged.UserProfileActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".logged.UserHomePageActivity"
