@@ -59,7 +59,11 @@
         android:id="@+id/availableTasksBrowser"
         android:name="com.example.quokka.logged.AvailableTasksBrowser"
         android:label="fragment_available_tasks_browser"
-        tools:layout="@layout/fragment_available_tasks_browser" />
+        tools:layout="@layout/fragment_available_tasks_browser" >
+        <action
+            android:id="@+id/action_availableTasksBrowser_to_fullTaskFragment"
+            app:destination="@id/fullTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userProfile"
         android:name="com.example.quokka.logged.UserProfile"
@@ -78,11 +82,19 @@
     <fragment
         android:id="@+id/inProgressFragment"
         android:name="com.example.quokka.logged.InProgressFragment"
-        android:label="InProgressFragment" />
+        android:label="InProgressFragment" >
+        <action
+            android:id="@+id/action_inProgressFragment_to_fullTaskFragment"
+            app:destination="@id/fullTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userTasksFragment"
         android:name="com.example.quokka.logged.UserTasksFragment"
-        android:label="UserTasksFragment" />
+        android:label="UserTasksFragment" >
+        <action
+            android:id="@+id/action_userTasksFragment_to_fullTaskFragment"
+            app:destination="@id/fullTaskFragment" />
+    </fragment>
     <fragment
         android:id="@+id/showUsers"
         android:name="com.example.quokka.ShowUsers"
@@ -95,4 +107,8 @@
         android:id="@+id/logInActivity"
         android:name="com.example.quokka.unlogged.LogInActivity"
         android:label="LogInActivity" />
+    <fragment
+        android:id="@+id/fullTaskFragment"
+        android:name="com.example.quokka.FullTaskFragment"
+        android:label="FullTaskFragment" />
 </navigation>

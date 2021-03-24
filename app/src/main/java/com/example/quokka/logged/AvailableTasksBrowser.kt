@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.quokka.FullTaskActivity
 import com.example.quokka.R
 import com.example.quokka.databinding.FragmentAvailableTasksBrowserBinding
 import com.example.quokka.recyclerview.TaskAdapter
@@ -44,9 +45,11 @@ private const val ARG_PARAM2 = "param2"
 // but I need a default element for each of the variables
 data class TaskModel1(
     val taskName: String = "",
+    var taskDescription: String = "",
     val startDate: Map<String, Int> = mapOf("k" to -1),
     val endDate: Map<String, Int> = mapOf("k" to -1),
-    val points: Int = -1
+    val points: Int = -1,
+    var ownerId: String = ""
 )
 
 class TaskViewHolder1(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -110,8 +113,18 @@ class AvailableTasksBrowser : Fragment() {
 
                 holder.itemView.setOnClickListener() {
                     Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(context, AddTaskActivity::class.java)
-                    context?.startActivity(intent)
+
+
+                    val intent = Intent(context, FullTaskActivity::class.java)
+                    intent.putExtra("fullTaskName", model.taskName) // put image data in Intent
+                    intent.putExtra("fullTaskDescription", model.taskDescription)
+                    intent.putExtra("fullStartDate", start)
+                    intent.putExtra("fullEndDate", end)
+                    intent.putExtra("fullPoints", model.points)
+                    intent.putExtra("fullTaskOwnerId", model.ownerId)
+
+
+                    context!!.startActivity(intent) // start Intent
                 }
             }
 

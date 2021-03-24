@@ -11,5 +11,6 @@ data class Task (
     var startDate: Map<String, Int>,
     var endDate: Map<String, Int>,
     var points: Int,
-    var ownerId: String
+    var ownerId: String,
+    var takerId: String
     )
