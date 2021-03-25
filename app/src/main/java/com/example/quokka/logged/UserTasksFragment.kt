@@ -136,7 +136,7 @@ class UserTasksFragment : Fragment() {
 //                    val intent = Intent(context, FullTaskFragment::class.java)
 //                    context?.startActivity(intent)
                     val intent = Intent(context, FullTaskActivity::class.java)
-                    intent.putExtra("fullTaskName", model.taskName) // put image data in Intent
+                    intent.putExtra("fullTaskName", model.taskName) // put data in Intent
                     intent.putExtra("fullTaskDescription", model.taskDescription)
                     intent.putExtra("fullStartDate", start)
                     intent.putExtra("fullEndDate", end)
