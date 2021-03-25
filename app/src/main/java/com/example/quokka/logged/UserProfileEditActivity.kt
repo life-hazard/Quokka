@@ -30,6 +30,7 @@ class UserProfileEditActivity : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val userId = sharedPreferences.getString("id_key", "default_value").toString()
         Log.d(TAG, "Current user id: $userId")
+        Log.i(TAG, "Current user id: $userId")
 
         val oldName = intent.getStringExtra("oldName")
         val oldSurname = intent.getStringExtra("oldSurname")
@@ -41,15 +42,19 @@ class UserProfileEditActivity : AppCompatActivity() {
 
         val userDoc = db.collection("users").document(userId)
 
-        val newName = binding.userNameEdit.text
-        val newSurname = binding.userSurnameEdit.text
-        val newEmail = binding.userEmailAddressEdit.text
-
         binding.saveProfileButton.setOnClickListener {
+
+            val newName = binding.userNameEdit.text.toString()
+            val newSurname = binding.userSurnameEdit.text.toString()
+            val newEmail = binding.userEmailAddressEdit.text.toString()
+
             if (newName.isNotEmpty()) {
                 Log.d(TAG, "New Name: $newName")
-                userDoc.update("name", newName).addOnSuccessListener { document ->
+                Log.i(TAG, "New Name: $newName")
+                db.collection("users").document(userId).update("name", newName).addOnSuccessListener { document ->
                     Log.d(TAG, "Document Updated: $document")
+                }.addOnFailureListener { e ->
+                    Log.d(TAG, "Error occurred: $e")
                 }
                 // TODO SHOULD UPDATE BUT DOESN'T
 
