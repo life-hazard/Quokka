@@ -97,6 +97,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/taskOwnerFrame"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:scrollbars="vertical"
+                android:scrollbarFadeDuration="@android:integer/config_shortAnimTime"
                 android:clickable="false"
                 android:focusable="false">
 
@@ -104,7 +106,7 @@
                     android:id="@+id/taskDescriptionEdit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textAlignment="center"
+                    android:textAlignment="viewStart"
                     android:focusable="false"
                     android:clickable="false"/>
 

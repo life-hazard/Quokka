@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quokka">
-        <activity android:name=".tasks.FullUserTaskActivity"></activity>
+        <activity android:name=".tasks.FullShowTaskActivity"></activity>
+        <activity android:name=".tasks.FullUserTaskActivity" />
         <activity android:name=".logged.UserProfileEditActivity" />
         <activity android:name=".tasks.FullTaskActivity" />
         <activity android:name=".logged.AddTaskActivity" />

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".tasks.FullShowTaskActivity">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/showTaskNameFrame"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:textAlignment="center"
+            android:hint="Task name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusable="false"
+            android:clickable="false"
+            android:textColor="@color/design_default_color_primary"
+            android:textColorHint="@color/design_default_color_primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/showTaskNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:clickable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/showTaskOwnerFrame"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:hint="For Task Owner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/showTaskNameFrame"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:focusable="false"
+            android:clickable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/showTaskOwnerEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:focusable="false"
+                android:clickable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/showTaskDescriptionFrame"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="40dp"
+            android:hint="Description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/showTaskOwnerFrame"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:scrollbars="vertical"
+            android:scrollbarFadeDuration="@android:integer/config_shortAnimTime"
+            android:clickable="false"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/showTaskDescriptionEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="viewStart"
+                android:focusable="false"
+                android:clickable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/showTaskStartDateFrame"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="0dp"
+            android:hint="Start date"
+            app:layout_constraintTop_toBottomOf="@id/showTaskDescriptionFrame"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/showTaskEndDateFrame"
+            android:clickable="false"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/showTaskStartDateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/showTaskEndDateFrame"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="0dp"
+            android:hint="End date"
+            app:layout_constraintTop_toBottomOf="@id/showTaskDescriptionFrame"
+            app:layout_constraintStart_toEndOf="@+id/showTaskStartDateFrame"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:clickable="false"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/showTaskEndDateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/showButtonConfirmCompletion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM COMPLETION"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/showTaskStartDateFrame"/>
+
+<!--        <Button-->
+<!--            android:id="@+id/showButtonBack"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="BACK"-->
+<!--            android:textSize="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/showButtonConfirmCompletion"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/showTaskEndDateFrame" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -31,11 +31,11 @@ class FullTaskActivity : AppCompatActivity() {
         val taskPoints = intent.getStringExtra("fullPoints")
         val taskOwner = intent.getStringExtra("fullTaskOwnerId")
         // Putting data from CardView into TextViews
-        binding.fullTaskName.text = taskName
-        binding.fullTaskDescription.text = taskDescription
-        binding.fullStartDate.text = taskStart
-        binding.fullEndDate.text = taskEnd
-        binding.fullTaskOwner.text = "For $taskOwner"
+        binding.fullTaskNameEdit.setText(taskName)
+        binding.fullTaskDescriptionEdit.setText(taskName)
+        binding.fullTaskStartDateEdit.setText(taskStart)
+        binding.fullTaskEndDateEdit.setText(taskEnd)
+        binding.fullTaskOwnerEdit.setText("For $taskOwner")
         // TODO get the taskOwner name from users collection
 
         // Adding parameter

@@ -72,7 +72,6 @@ class AddTaskActivity : AppCompatActivity() {
 
         val ownerId = sharedPreferences.getString("id_key", "default_value").toString()
         Log.i(TAG, "Task Owner Id value: $ownerId")
-        val takerId = ""
 
         val name = binding.taskNameEdit.text.toString().trim()
         val description = binding.taskDescriptionEdit.text.toString()
@@ -98,7 +97,7 @@ class AddTaskActivity : AppCompatActivity() {
         val db = Firebase.firestore
         Log.i(TAG, "I made a database value!!")
 
-        val task = Task(name, description, startDateMap, endDateMap, points, ownerId, takerId)
+        val task = Task(name, description, startDateMap, endDateMap, points, ownerId, takerId = "", status = "")
         Log.i(TAG, "Task was created: $task")
 
         db.collection("tasks").add(task).addOnSuccessListener { documentReference ->

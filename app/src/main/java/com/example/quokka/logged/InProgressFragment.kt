@@ -16,6 +16,7 @@ import com.example.quokka.tasks.FullTaskActivity
 import com.example.quokka.R
 import com.example.quokka.databinding.FragmentInProgressBinding
 import com.example.quokka.recyclerview.TaskAdapter
+import com.example.quokka.tasks.FullShowTaskActivity
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.ktx.firestore
@@ -108,7 +109,7 @@ class InProgressFragment : Fragment() {
 
                 holder.itemView.setOnClickListener() { view ->
                     Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(context, FullTaskActivity::class.java)
+                    val intent = Intent(context, FullShowTaskActivity::class.java)
                     intent.putExtra("fullTaskName", model.taskName) // put image data in Intent
                     intent.putExtra("fullTaskDescription", model.taskDescription)
                     intent.putExtra("fullStartDate", start)

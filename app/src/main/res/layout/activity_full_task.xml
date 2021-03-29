@@ -8,113 +8,255 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".tasks.FullTaskActivity">
 
-<TextView
-    android:id="@+id/fullTaskName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Task Name"
-    android:textSize="24dp"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintBottom_toTopOf="@id/fullTaskOwner"/>
-
-<TextView
-    android:id="@+id/fullTaskOwner"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="0dp"
-    android:text="For Task Owner"
-    android:textSize="16dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/fullTaskName"
-    app:layout_constraintBottom_toTopOf="@id/scrollView"/>
-
-<ScrollView
-    android:id="@+id/scrollView"
-    android:layout_width="300dp"
-    android:layout_height="200dp"
-    android:layout_marginStart="50dp"
-    android:layout_marginTop="0dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/fullTaskOwner"
-    app:layout_constraintBottom_toTopOf="@id/fullStartDate">
-    <TextView
-        android:id="@+id/fullTaskDescription"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Description\nThis is full task description\n\n\n\n\n\n\n\n\n\n\nI hope it works\nScrollView\n\n\n"
-        android:textSize="16dp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullTaskNameFrame"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textAlignment="center"
+        android:hint="Task name"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="parent"/>
-</ScrollView>
-<TextView
-    android:id="@+id/fullStartDateText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="50dp"
-    android:text="Start: "
-    android:textSize="16dp"
-    app:layout_constraintTop_toBottomOf="@+id/scrollView"
-    app:layout_constraintBottom_toTopOf="@id/fullEndDateText"
-    app:layout_constraintEnd_toStartOf="@id/fullStartDate"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="false"
+        android:clickable="false"
+        android:textColor="@color/design_default_color_primary"
+        android:textColorHint="@color/design_default_color_primary">
 
-<TextView
-    android:id="@+id/fullStartDate"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="60dp"
-    android:text="00.00.0000"
-    android:textSize="16dp"
-    app:layout_constraintTop_toBottomOf="@id/scrollView"
-    app:layout_constraintBottom_toTopOf="@id/fullEndDate"
-    app:layout_constraintEnd_toEndOf="parent"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullTaskNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:focusable="false"
+            android:clickable="false"/>
 
-<TextView
-    android:id="@+id/fullEndDateText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="50dp"
-    android:text="End: "
-    android:textSize="16dp"
-    app:layout_constraintEnd_toStartOf="@id/fullEndDate"
-    app:layout_constraintTop_toBottomOf="@+id/fullStartDateText"
-    app:layout_constraintBottom_toTopOf="@id/fullButtonTakeTask"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-<TextView
-    android:id="@+id/fullEndDate"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="60dp"
-    android:text="00.00.0000"
-    android:textSize="16dp"
-    app:layout_constraintTop_toBottomOf="@id/fullStartDate"
-    app:layout_constraintBottom_toTopOf="@id/fullButtonBack"
-    app:layout_constraintEnd_toEndOf="parent"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullTaskOwnerFrame"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:hint="For Task Owner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullTaskNameFrame"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="false"
+        android:clickable="false">
 
-<Button
-    android:id="@+id/fullButtonTakeTask"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="TAKE TASK"
-    android:textSize="16dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/fullButtonBack"
-    app:layout_constraintTop_toBottomOf="@id/fullEndDateText"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullTaskOwnerEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:focusable="false"
+            android:clickable="false"/>
 
-<Button
-    android:id="@+id/fullButtonBack"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="BACK"
-    android:textSize="16dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/fullButtonTakeTask"
-    app:layout_constraintTop_toBottomOf="@id/fullEndDate"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullTaskDescriptionFrame"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:hint="Description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullTaskOwnerFrame"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scrollbars="vertical"
+        android:scrollbarFadeDuration="@android:integer/config_shortAnimTime"
+        android:clickable="false"
+        android:focusable="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullTaskDescriptionEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="viewStart"
+            android:focusable="false"
+            android:clickable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullTaskStartDateFrame"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+        android:hint="Start date"
+        app:layout_constraintTop_toBottomOf="@id/fullTaskDescriptionFrame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fullTaskEndDateFrame"
+        android:clickable="false"
+        android:focusable="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullTaskStartDateEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullTaskEndDateFrame"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+        android:hint="End date"
+        app:layout_constraintTop_toBottomOf="@id/fullTaskDescriptionFrame"
+        app:layout_constraintStart_toEndOf="@+id/fullTaskStartDateFrame"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="false"
+        android:focusable="false">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/fullTaskEndDateEdit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAlignment="center"
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="false"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/fullButtonTakeTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TAKE TASK"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fullButtonBack"
+        app:layout_constraintTop_toBottomOf="@id/fullTaskEndDateFrame"/>
+
+    <Button
+        android:id="@+id/fullButtonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fullButtonTakeTask"
+        app:layout_constraintTop_toBottomOf="@id/fullTaskEndDateFrame"/>
+
+
+    <!--<TextView-->
+<!--    android:id="@+id/fullTaskName"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="Task Name"-->
+<!--    android:textSize="24dp"-->
+<!--    app:layout_constraintTop_toTopOf="parent"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/fullTaskOwner"/>-->
+
+<!--<TextView-->
+<!--    android:id="@+id/fullTaskOwner"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginStart="50dp"-->
+<!--    android:layout_marginTop="0dp"-->
+<!--    android:text="For Task Owner"-->
+<!--    android:textSize="16dp"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/fullTaskName"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/scrollView"/>-->
+
+<!--<ScrollView-->
+<!--    android:id="@+id/scrollView"-->
+<!--    android:layout_width="300dp"-->
+<!--    android:layout_height="200dp"-->
+<!--    android:layout_marginStart="50dp"-->
+<!--    android:layout_marginTop="0dp"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/fullTaskOwner"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/fullStartDate">-->
+<!--    <TextView-->
+<!--        android:id="@+id/fullTaskDescription"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:text="Description\nThis is full task description\n\n\n\n\n\n\n\n\n\n\nI hope it works\nScrollView\n\n\n"-->
+<!--        android:textSize="16dp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="parent"-->
+<!--        app:layout_constraintBottom_toTopOf="parent"/>-->
+<!--</ScrollView>-->
+<!--<TextView-->
+<!--    android:id="@+id/fullStartDateText"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginEnd="50dp"-->
+<!--    android:text="Start: "-->
+<!--    android:textSize="16dp"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/scrollView"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/fullEndDateText"-->
+<!--    app:layout_constraintEnd_toStartOf="@id/fullStartDate"/>-->
+
+<!--<TextView-->
+<!--    android:id="@+id/fullStartDate"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginEnd="60dp"-->
+<!--    android:text="00.00.0000"-->
+<!--    android:textSize="16dp"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/scrollView"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/fullEndDate"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--<TextView-->
+<!--    android:id="@+id/fullEndDateText"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginEnd="50dp"-->
+<!--    android:text="End: "-->
+<!--    android:textSize="16dp"-->
+<!--    app:layout_constraintEnd_toStartOf="@id/fullEndDate"-->
+<!--    app:layout_constraintTop_toBottomOf="@+id/fullStartDateText"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/fullButtonTakeTask"/>-->
+
+<!--<TextView-->
+<!--    android:id="@+id/fullEndDate"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginEnd="60dp"-->
+<!--    android:text="00.00.0000"-->
+<!--    android:textSize="16dp"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/fullStartDate"-->
+<!--    app:layout_constraintBottom_toTopOf="@id/fullButtonBack"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--<Button-->
+<!--    android:id="@+id/fullButtonTakeTask"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="TAKE TASK"-->
+<!--    android:textSize="16dp"-->
+<!--    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintEnd_toStartOf="@+id/fullButtonBack"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/fullEndDateText"/>-->
+
+<!--<Button-->
+<!--    android:id="@+id/fullButtonBack"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="BACK"-->
+<!--    android:textSize="16dp"-->
+<!--    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintStart_toEndOf="@+id/fullButtonTakeTask"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/fullEndDate"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
