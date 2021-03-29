@@ -44,9 +44,9 @@ class UserProfileActivity : AppCompatActivity() {
                 val userRating = document.getLong("rating")?.toInt()
                 val userPoints = document.getLong("points")?.toInt()
 
-                binding.userName.text = userName
-                binding.userSurname.text = userSurname
-                binding.userEmailAddress.text = userEmail
+                binding.userNameText.setText(userName)
+                binding.userSurnameText.setText(userSurname)
+                binding.userEmailText.setText(userEmail)
                 binding.numberOfPoints.text = userPoints.toString()
                 if (userRating != null) {
                     binding.UserRatingBar.rating = userRating.toFloat()

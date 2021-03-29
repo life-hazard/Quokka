@@ -16,83 +16,125 @@
             android:id="@+id/userIcon"
             android:layout_width="114dp"
             android:layout_height="105dp"
+            android:layout_marginTop="115dp"
             android:src="@drawable/user"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.151" />
-
-        <TextView
-            android:id="@+id/userName"
-            style="@style/text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="108dp"
-            android:layout_marginStart="180dp"
-            android:text="@string/user_name"
-            android:textAlignment="textStart"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/userNameTextFrame"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <TextView
-            android:id="@+id/userSurname"
-            style="@style/text_style"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userNameTextFrame"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginBottom="90dp"
-            android:text="@string/user_surname"
-            android:textAlignment="textStart"
-            app:layout_constraintBottom_toTopOf="@id/userEmailAddress"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="160dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userName"/>
-
-        <TextView
-            android:id="@+id/userEmailAddress"
-            style="@style/text_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="@string/user_email_address"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.309" />
+            android:focusable="false"
+            android:clickable="false">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:clickable="false"
+                android:focusable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userSurnameTextFrame"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="160dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userNameTextFrame"
+            android:clickable="false"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userSurnameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:clickable="false"
+                android:focusable="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userEmailTextFrame"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userSurnameTextFrame"
+            android:clickable="false"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userEmailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:clickable="false"
+                android:focusable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/userPasswordTextFrame"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userEmailTextFrame"
+            android:clickable="false"
+            android:focusable="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userPasswordText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"
+                android:text="*****"
+                android:clickable="false"
+                android:focusable="false"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/pointsTextLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/userPasswordTextFrame"
+            app:layout_constraintBottom_toTopOf="@id/userRatingText"
+            android:gravity="center_horizontal">
         <TextView
             android:id="@+id/numberOfPoints"
             style="@style/text_style"
-            android:layout_width="47dp"
-            android:layout_height="29dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:text="@string/number_of_points"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/pointsText"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textAlignment="textEnd"/>
 
         <TextView
             android:id="@+id/pointsText"
             style="@style/text_style"
-            android:layout_width="87dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="@string/points_text"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.623"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textAlignment="textStart"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/userRatingText"
@@ -101,24 +143,19 @@
             android:layout_height="wrap_content"
             android:text="@string/user_rating_text"
             android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/UserRatingBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.653" />
+            app:layout_constraintTop_toBottomOf="@id/pointsTextLayout" />
 
         <RatingBar
             android:id="@+id/UserRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/editProfileButton"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userRatingText"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/userRatingText"/>
 
         <Button
             android:id="@+id/editProfileButton"
@@ -127,10 +164,8 @@
             android:text="@string/edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.875" />
+            app:layout_constraintTop_toBottomOf="@id/UserRatingBar" />
 
 
 

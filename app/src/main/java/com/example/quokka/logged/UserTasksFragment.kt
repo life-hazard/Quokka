@@ -13,10 +13,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quokka.FullTaskActivity
+import com.example.quokka.tasks.FullTaskActivity
 import com.example.quokka.R
 import com.example.quokka.databinding.FragmentUserTasksBinding
 import com.example.quokka.recyclerview.TaskAdapter
+import com.example.quokka.tasks.FullUserTaskActivity
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.snackbar.Snackbar
@@ -37,6 +38,9 @@ private const val ARG_PARAM2 = "param2"
  *
  * Holds the tasks made by the logged user
  */
+
+// TODO add a full task screen only with edit button if not taken by other users, if taken make the button inactive (grey)
+
 data class UserTaskModel(
     val taskName: String = "",
     var taskDescription: String = "",
@@ -135,7 +139,7 @@ class UserTasksFragment : Fragment() {
                     //view.findNavController().navigate(R.id.action_userTasksFragment_to_fullTaskFragment)
 //                    val intent = Intent(context, FullTaskFragment::class.java)
 //                    context?.startActivity(intent)
-                    val intent = Intent(context, FullTaskActivity::class.java)
+                    val intent = Intent(context, FullUserTaskActivity::class.java)
                     intent.putExtra("fullTaskName", model.taskName) // put data in Intent
                     intent.putExtra("fullTaskDescription", model.taskDescription)
                     intent.putExtra("fullStartDate", start)

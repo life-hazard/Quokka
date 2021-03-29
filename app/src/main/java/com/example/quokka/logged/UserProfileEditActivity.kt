@@ -38,7 +38,31 @@ class UserProfileEditActivity : AppCompatActivity() {
 
         binding.userNameEdit.hint = oldName
         binding.userSurnameEdit.hint = oldSurname
-        binding.userEmailAddressEdit.hint = oldEmail
+        binding.userEmailEdit.hint = oldEmail
+
+        binding.userNameEdit.setOnFocusChangeListener() { _, hasFocus ->
+            if(hasFocus) {
+                binding.userNameEditFrame.hint = "Name"
+            } else {
+                binding.userNameEditFrame.hint = oldName
+            }
+        }
+
+        binding.userSurnameEdit.setOnFocusChangeListener() {_, hasFocus ->
+            if(hasFocus) {
+                binding.userSurnameEditFrame.hint = "Surname"
+            } else {
+                binding.userSurnameEditFrame.hint = oldSurname
+            }
+        }
+
+        binding.userEmailEdit.setOnFocusChangeListener() {_, hasFocus ->
+            if(hasFocus) {
+                binding.userEmailEditFrame.hint = "E-mail"
+            } else {
+                binding.userEmailEditFrame.hint = oldEmail
+            }
+        }
 
         val userDoc = db.collection("users").document(userId)
 
@@ -46,7 +70,7 @@ class UserProfileEditActivity : AppCompatActivity() {
 
             val newName = binding.userNameEdit.text.toString()
             val newSurname = binding.userSurnameEdit.text.toString()
-            val newEmail = binding.userEmailAddressEdit.text.toString()
+            val newEmail = binding.userEmailEdit.text.toString()
 
             if (newName.isNotEmpty()) {
                 Log.d(TAG, "New Name: $newName")
@@ -56,70 +80,25 @@ class UserProfileEditActivity : AppCompatActivity() {
                 }.addOnFailureListener { e ->
                     Log.d(TAG, "Error occurred: $e")
                 }
-                // TODO SHOULD UPDATE BUT DOESN'T
 
-//                userDoc.get().addOnSuccessListener { document ->
-//                    if (document != null) {
-//                        Log.d(TAG, "I got a new document!! ${document.data}")
-//                    }
-//                }
             }
 
             if (newSurname.isNotEmpty()) {
                 Log.d(TAG, "New Surname: $newSurname")
                 userDoc.update("surname", newSurname)
-                // TODO SHOULD UPDATE BUT DOESN'T
             }
 
             if (newEmail.isNotEmpty()) {
                 Log.d(TAG, "New Email: $newEmail")
                 userDoc.update("email", newEmail)
-                // TODO SHOULD UPDATE BUT DOESN'T
 
             }
+
+            // if for new password
 
             intent = Intent(this, UserProfileActivity::class.java)
             this.startActivity(intent)
         }
-
-//        db.collection("users").document(userId).get().addOnSuccessListener { document ->
-//            if(document != null) {
-//                Log.d(UserProfile.TAG, "The user is: ${document.data}")
-//                val userName = document.getString("name")
-//                val userSurname = document.getString("surname")
-//                val userEmail = document.getString("email")
-//                val userAddress = document.getString("address")
-//
-//                binding.userNameEdit.hint = userName
-//                binding.userSurnameEdit.hint = userSurname
-//                binding.userEmailAddressEdit.hint = userEmail
-//
-//                binding.saveProfileButton.setOnClickListener {
-//                if(!newName.equals(oldName)) {
-//                    db.collection("users").document(userId).update("name", newName).addOnSuccessListener { document ->
-//                        Log.d(TAG, "User updated with name: $document")
-//                    }
-//                }
-//                if(!newSurname.equals(oldSurname)) {
-//                    db.collection("users").document(userId).update("surname", newSurname).addOnSuccessListener { document ->
-//                        Log.d(TAG, "User updated with surname: $document")
-//                    }
-//                }
-//                if(!newEmail.equals(oldEmail)) {
-//                    db.collection("users").document(userId).update("email", newEmail).addOnSuccessListener { document ->
-//                        Log.d(TAG, "User updated with email: $document")
-//                    }
-//                }
-//                    Toast.makeText(this, "Profile saved", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-
-
-//        binding.saveProfileButton.setOnClickListener {
-//            intent = Intent(this, UserProfileActivity::class.java)
-//            this.startActivity(intent)
-//        }
 
         binding.root
     }

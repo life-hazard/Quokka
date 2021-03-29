@@ -1,4 +1,4 @@
-package com.example.quokka
+package com.example.quokka.tasks
 
 import android.content.Context
 import android.content.Intent
@@ -6,15 +6,13 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.example.quokka.R
 import com.example.quokka.databinding.ActivityFullTaskBinding
 import com.example.quokka.logged.UserHomePageActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.squareup.okhttp.internal.DiskLruCache
 
 class FullTaskActivity : AppCompatActivity() {
 
@@ -23,7 +21,6 @@ class FullTaskActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_full_task)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_full_task)
 
         // Taking data from CardView
@@ -39,6 +36,7 @@ class FullTaskActivity : AppCompatActivity() {
         binding.fullStartDate.text = taskStart
         binding.fullEndDate.text = taskEnd
         binding.fullTaskOwner.text = "For $taskOwner"
+        // TODO get the taskOwner name from users collection
 
         // Adding parameter
         val currentUserId = ""
@@ -79,10 +77,6 @@ class FullTaskActivity : AppCompatActivity() {
         }
 
 
-
-    }
-
-    fun takeTask() {
 
     }
 

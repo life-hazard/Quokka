@@ -11,9 +11,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quokka.FullTaskActivity
+import com.example.quokka.tasks.FullTaskActivity
 import com.example.quokka.R
 import com.example.quokka.databinding.FragmentInProgressBinding
 import com.example.quokka.recyclerview.TaskAdapter
@@ -31,6 +30,10 @@ import kotlinx.android.synthetic.main.*
  *
  * Holds Tasks that logged user said they'll complete
  */
+
+// TODO add a full task without buttons
+// TODO add a button "completed" with pop up warning(?) and add the users pending to score to UserProfileActivity
+// TODO check tasks filtering
 
 data class IPTaskModel(
     val taskName: String = "",

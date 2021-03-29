@@ -12,16 +12,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.quokka.FullTaskActivity
+import com.example.quokka.tasks.FullTaskActivity
 import com.example.quokka.R
 import com.example.quokka.databinding.FragmentAvailableTasksBrowserBinding
-import com.example.quokka.recyclerview.TaskAdapter
-import com.example.quokka.recyclerview.TaskModel
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -134,6 +130,4 @@ class AvailableTasksBrowser : Fragment() {
 
         return binding.root
     }
-
-    // TODO: Add CardView to recyclerview_item_row and edit the points cuz it doesn't scale
 }

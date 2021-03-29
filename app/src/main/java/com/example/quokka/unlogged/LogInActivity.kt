@@ -35,8 +35,8 @@ class LogInActivity : AppCompatActivity() {
 
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
 
-        val s = FirebaseManager()
-        s.getAllTasks()
+        //val s = FirebaseManager()
+        //s.getAllTasks()
 
         binding.logInButton.setOnClickListener {
             logIn()
@@ -57,8 +57,8 @@ class LogInActivity : AppCompatActivity() {
         // Read input
         val db = Firebase.firestore
 
-        val email = binding.editUserEmailAddress.text.toString().trim()
-        val password = binding.editPassword.text.toString()
+        val email = binding.emailEdit.text.toString().trim()
+        val password = binding.passwordEdit.text.toString()
         var sharedUserId = " "
 
 //        val sharedPreferences: SharedPreferences = requireContext().getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)

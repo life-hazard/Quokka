@@ -16,58 +16,91 @@
                 android:id="@+id/userIcon"
                 android:layout_width="114dp"
                 android:layout_height="105dp"
+                android:layout_marginTop="115dp"
                 android:src="@drawable/user"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.161"
+                app:layout_constraintEnd_toStartOf="@id/userNameEditFrame"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.151" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/userNameEdit"
-                style="@style/text_style"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userNameEditFrame"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
-                android:layout_marginStart="180dp"
-                android:textAlignment="textStart"
+                android:layout_marginStart="160dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/userNameEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="textStart"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userSurnameEditFrame"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="160dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userNameEditFrame">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/userSurnameEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userEmailEditFrame"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/userSurnameEditFrame">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/userEmailEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-            <EditText
-                android:id="@+id/userSurnameEdit"
-                style="@style/text_style"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/userPasswordEditFrame"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginStart="180dp"
-                android:layout_marginBottom="80dp"
-                android:textAlignment="textStart"
-                app:layout_constraintBottom_toTopOf="@id/userEmailAddressEdit"
+                android:hint="Password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userNameEdit"/>
+                app:layout_constraintTop_toBottomOf="@id/userEmailEditFrame"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/userPasswordEdit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="textStart"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-
-            <EditText
-                android:id="@+id/userEmailAddressEdit"
-                style="@style/text_style"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:textAlignment="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userSurnameEdit"/>
             <LinearLayout
                 android:id="@+id/pointsLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/userEmailAddressEdit"
+                app:layout_constraintTop_toBottomOf="@id/userPasswordEditFrame"
                 app:layout_constraintBottom_toTopOf="@id/userRatingText">
             <TextView
                 android:id="@+id/numberOfPoints"
@@ -105,7 +138,6 @@
                 android:id="@+id/UserRatingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 app:layout_constraintBottom_toTopOf="@id/saveProfileButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
