@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "852972874439",
-    "project_id": "quokka-34775",
-    "storage_bucket": "quokka-34775.appspot.com"
+    "project_number": "451219465465",
+    "project_id": "qdatabase-2af9c",
+    "storage_bucket": "qdatabase-2af9c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:852972874439:android:bc193b6662391030faace2",
+        "mobilesdk_app_id": "1:451219465465:android:734b38eb7853062e312e28",
         "android_client_info": {
-          "package_name": "com.example.quokka"
+          "package_name": "com.app.quokka"
         }
       },
       "oauth_client": [
         {
-          "client_id": "852972874439-6o7trugtsnkjtva2csob2tl4liv3dscq.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.quokka",
-            "certificate_hash": "a8527578eb0562a5bb201eb8045440534e9d982e"
-          }
-        },
-        {
-          "client_id": "852972874439-t8tao24snbnoqofnaj3qn3f941igk1rv.apps.googleusercontent.com",
+          "client_id": "451219465465-4um3ia6e68fid80e36g3oigjjleqktnu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDnEKHpnbMqdiqrbXCh3hSj_PCiZkrZGsw"
+          "current_key": "AIzaSyAyZ9RFWHxfRmCb2638STwNzYfzKRK-_v0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "852972874439-t8tao24snbnoqofnaj3qn3f941igk1rv.apps.googleusercontent.com",
+              "client_id": "451219465465-4um3ia6e68fid80e36g3oigjjleqktnu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

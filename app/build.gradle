@@ -12,7 +12,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.example.quokka"
+        applicationId "com.app.quokka"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
@@ -48,6 +48,7 @@ android {
 
 dependencies {
     implementation 'com.google.firebase:firebase-database-ktx:19.3.0'
+    implementation 'com.google.firebase:firebase-firestore:22.1.0'
 
 
     // for exceeding number of library methods
@@ -95,14 +96,14 @@ dependencies {
     kapt 'androidx.databinding:databinding-compiler-common:4.1.2'
 
 //    // testing
-//    testImplementation 'junit:junit:4.13.1'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-//    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
-//    androidTestImplementation ("androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
-//    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
+    testImplementation 'junit:junit:4.13.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    androidTestImplementation ("androidx.test.espresso:espresso-core:$rootProject.espressoVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.androidxJunitVersion"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.quokka">
+    package="com.app.quokka">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -11,21 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Quokka">
-        <activity android:name=".tasks.FullShowTaskActivity"></activity>
-        <activity android:name=".tasks.FullUserTaskActivity" />
-        <activity android:name=".logged.UserProfileEditActivity" />
-        <activity android:name=".tasks.FullTaskActivity" />
-        <activity android:name=".logged.AddTaskActivity" />
-        <activity android:name=".unlogged.LogInActivity" />
-        <activity android:name=".unlogged.SignUpActivity" />
+        <activity android:name="com.app.quokka.tasks.FullShowTaskActivity"></activity>
+        <activity android:name="com.app.quokka.tasks.FullUserTaskActivity" />
+        <activity android:name="com.app.quokka.logged.UserProfileEditActivity" />
+        <activity android:name="com.app.quokka.tasks.FullTaskActivity" />
+        <activity android:name="com.app.quokka.logged.AddTaskActivity" />
+        <activity android:name="com.app.quokka.unlogged.LogInActivity" />
+        <activity android:name="com.app.quokka.unlogged.SignUpActivity" />
         <activity
-            android:name=".logged.UserProfileActivity"
+            android:name="com.app.quokka.logged.UserProfileActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".logged.UserHomePageActivity"
+            android:name="com.app.quokka.logged.UserHomePageActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.app.quokka.MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

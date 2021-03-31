@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context="com.example.quokka.unlogged.LogInActivity">
+        tools:context="com.app.quokka.unlogged.LogInActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -45,7 +45,6 @@
                 android:id="@+id/passwordEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="textStart"
                 android:inputType="textPassword"/>
 
         </com.google.android.material.textfield.TextInputLayout>

@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context="com.example.quokka.unlogged.LogInFragment">
+        tools:context="com.app.quokka.unlogged.LogInFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -222,20 +222,20 @@
             android:text="EDIT"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fullButtonBack"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/taskStartDateFrame"/>
 
-        <Button
-            android:id="@+id/fullButtonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="BACK"
-            android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fullButtonEditTask"
-            app:layout_constraintTop_toBottomOf="@id/taskEndDateFrame" />
+<!--        <Button-->
+<!--            android:id="@+id/fullButtonBack"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="BACK"-->
+<!--            android:textSize="16dp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/fullButtonEditTask"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/taskEndDateFrame" />-->
 
         <Button
             android:id="@+id/fullButtonSave"

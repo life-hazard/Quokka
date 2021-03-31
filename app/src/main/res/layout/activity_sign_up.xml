@@ -6,7 +6,7 @@
   <data>
     <variable
         name="userInfo"
-        type="com.example.quokka.UserInfo" />
+        type="com.app.quokka.UserInfo" />
   </data>
 
   <FrameLayout
@@ -87,7 +87,8 @@
           android:id="@+id/passwordEditTextSignUpA"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:textAlignment="textStart"/>
+          android:textAlignment="textStart"
+          android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,7 +107,8 @@
           android:id="@+id/password2EditTextSignUpA"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:textAlignment="textStart"/>
+          android:textAlignment="textStart"
+          android:inputType="textPassword"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

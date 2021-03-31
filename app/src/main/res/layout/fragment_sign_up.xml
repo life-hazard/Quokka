@@ -7,7 +7,7 @@
     <data>
         <variable
             name="userInfo"
-            type="com.example.quokka.UserInfo" />
+            type="com.app.quokka.UserInfo" />
     </data>
 
 <FrameLayout
