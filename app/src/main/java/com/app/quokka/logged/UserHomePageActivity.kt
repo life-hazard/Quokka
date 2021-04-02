@@ -50,7 +50,7 @@ class UserHomePageActivity : AppCompatActivity() {
         userProfile.setOnClickListener {
             //view: View ->
             //view.findNavController().navigate(R.id.action_userMainScreenFragment_to_userProfile)
-            Toast.makeText(applicationContext, "User", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "User", Toast.LENGTH_SHORT).show()
             //makeCurrentFragment(user)
             val intent = Intent(this, UserProfileActivity::class.java)
             startActivity(intent)
@@ -59,11 +59,14 @@ class UserHomePageActivity : AppCompatActivity() {
             val fab: View = findViewById(R.id.fAddTaskButton)
             fab.setOnClickListener { view ->
                 //view.findNavController().navigate(R.id.action_userMainScreenFragment_to_addTaskScreen)
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                    .show()
                 val intent = Intent(this, AddTaskActivity::class.java)
                 startActivity(intent)
             }
+
+        binding.notifyButton.setOnClickListener {
+            val intent = Intent(this, FinishedTasksActivity::class.java)
+            this.startActivity(intent)
+        }
     }
 
     private fun makeCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {

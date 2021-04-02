@@ -48,14 +48,18 @@ class UserProfile : Fragment() {
                 val userSurname = document.getString("surname")
                 val userEmail = document.getString("email")
                 val userAddress = document.getString("address")
-                val userRating = document.getString("rating")
+                val r = document.data?.get("rating").toString()
+                val ratingMap = r.substring(1, r.length-1).split(", ").associate {
+                    val (left, right) = it.split("=")
+                    left to right.toFloat()
+                }
+                val rating = ratingMap.getValue("rating")
 
                 binding.userName.text = userName
                 binding.userSurname.text = userSurname
                 binding.userEmailAddress.text = userEmail
-                if (userRating != null) {
-                    binding.UserRatingBar.numStars = userRating.toInt()
-                }
+                binding.UserRatingBar.rating = rating
+
             }
 
         }

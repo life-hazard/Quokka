@@ -44,7 +44,9 @@ data class UserTaskModel(
     val startDate: Map<String, Int> = mapOf("k" to -1),
     val endDate: Map<String, Int> = mapOf("k" to -1),
     val points: Int = -1,
-    var ownerId: String = ""
+    var ownerId: String = "",
+    var takerId: String = "",
+    val status: String = ""
 )
 
 class UserTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -32,7 +32,9 @@ class UserProfileEditActivity : AppCompatActivity() {
         val oldName = intent.getStringExtra("oldName")
         val oldSurname = intent.getStringExtra("oldSurname")
         val oldEmail = intent.getStringExtra("oldEmail")
+        val rating = intent.getFloatExtra("rating", 0f)
 
+        binding.UserRatingBar.rating = rating
         binding.userNameEdit.hint = oldName
         binding.userSurnameEdit.hint = oldSurname
         binding.userEmailEdit.hint = oldEmail

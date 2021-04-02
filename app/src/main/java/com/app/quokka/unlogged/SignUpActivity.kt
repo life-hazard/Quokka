@@ -68,7 +68,7 @@ class SignUpActivity : AppCompatActivity() {
         val email = binding.emailEditTextSignUpA.text.toString().trim()
         val password = binding.passwordEditTextSignUpA.text.toString()
         val address = binding.addressEditTextSignUpA.text.toString()
-        val rating = -1
+        val rating = mapOf("sum" to 0f, "divider" to 0f, "rating" to 0f)
         // user gets 100 points on start
         val points = 100
 

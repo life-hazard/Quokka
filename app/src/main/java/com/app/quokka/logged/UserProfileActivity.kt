@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.app.quokka.R
 import com.app.quokka.databinding.ActivityUserProfileBinding
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.getField
 import com.google.firebase.ktx.Firebase
 
 class UserProfileActivity : AppCompatActivity() {
@@ -36,20 +37,31 @@ class UserProfileActivity : AppCompatActivity() {
                 val userSurname = document.getString("surname")
                 val userEmail = document.getString("email")
                 val userAddress = document.getString("address")
-                val userRating = document.getLong("rating")?.toInt()
+
+                val r = document.data?.get("rating").toString()
+                Log.d("showRating", "The string of rating: ${r.substring(1, r.length-1)}")
+
+                val ratingMap = r.substring(1, r.length-1).split(", ").associate {
+                    val (left, right) = it.split("=")
+                    left to right.toFloat()
+                }
+                val rate = ratingMap.getValue("rating")
+
+                Log.d("showRATING", "The rating is: $ratingMap")
+                val userRating = ratingMap.getValue("rating")
                 val userPoints = document.getLong("points")?.toInt()
 
                 binding.userNameText.setText(userName)
                 binding.userSurnameText.setText(userSurname)
                 binding.userEmailText.setText(userEmail)
                 binding.numberOfPoints.text = userPoints.toString()
-                if (userRating != null) {
-                    binding.UserRatingBar.rating = userRating.toFloat()
-                }
+                binding.UserRatingBar.rating = rate
+
 
                 intent.putExtra("oldName", userName)
                 intent.putExtra("oldSurname", userSurname)
                 intent.putExtra("oldEmail", userEmail)
+                intent.putExtra("rating", rate)
             }
         }
 

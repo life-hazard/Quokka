@@ -119,7 +119,7 @@ class AvailableTasksBrowser : Fragment() {
                     intent.putExtra("fullTaskDescription", model.taskDescription)
                     intent.putExtra("fullStartDate", start)
                     intent.putExtra("fullEndDate", end)
-                    intent.putExtra("fullPoints", model.points)
+                    intent.putExtra("fullPoints", model.points.toString())
                     intent.putExtra("fullTaskOwnerId", model.ownerId)
 
 

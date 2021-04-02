@@ -17,12 +17,13 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/notify"
+                android:id="@+id/notifyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="340dp"
                 android:layout_marginTop="10dp"
-                app:srcCompat="@android:drawable/btn_star_big_on" />
+                app:srcCompat="@android:drawable/btn_star_big_on"
+                android:clickable="true"/>
 
             <FrameLayout
                 android:id="@+id/fl_wrapper"
@@ -31,7 +32,7 @@
                 android:layout_above="@+id/bottom_navigation"
                 android:layout_marginTop="60dp"
                 android:layout_marginBottom="0dp">
-                
+
             </FrameLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -6,6 +6,6 @@ data class User(
     var email: String,
     var password: String,
     var address: String,
-    var rating: Int,
+    var rating: Map<String, Float>,
     var points: Int
 )
