@@ -63,11 +63,19 @@ class UserProfileEditActivity : AppCompatActivity() {
 
         val userDoc = db.collection("users").document(userId)
 
+        db.collection("users").document(userId).get().addOnSuccessListener { document ->
+            if (document != null) {
+                val points = document.data?.getValue("points").toString()
+                binding.numberOfPoints.text = points
+            }
+        }
+
         binding.saveProfileButton.setOnClickListener {
 
             val newName = binding.userNameEdit.text.toString()
             val newSurname = binding.userSurnameEdit.text.toString()
             val newEmail = binding.userEmailEdit.text.toString()
+            val newPassword = binding.userPasswordEdit.text.toString()
 
             if (newName.isNotEmpty()) {
                 Log.d(TAG, "New Name: $newName")
@@ -90,8 +98,18 @@ class UserProfileEditActivity : AppCompatActivity() {
                 userDoc.update("email", newEmail)
 
             }
-
-            // if for new password
+            // TODO check if it works
+            if (newPassword.isNotEmpty()) {
+                Log.d(TAG, "New Password")
+                userDoc.update("password", newPassword)
+            }
+//
+//            db.collection("users").document(userId).get().addOnSuccessListener { document ->
+//                if (document != null) {
+//                    val points = document.data?.getValue("points").toString()
+//                    binding.numberOfPoints.text = points
+//                }
+//            }
 
             intent = Intent(this, UserProfileActivity::class.java)
             this.startActivity(intent)

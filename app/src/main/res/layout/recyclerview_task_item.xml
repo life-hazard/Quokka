@@ -12,6 +12,8 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?selectableItemBackground"
+    android:outlineAmbientShadowColor="@color/blue_200"
+    android:outlineSpotShadowColor="@color/blue_200"
     card_view:cardCornerRadius="10dp"
     card_view:cardElevation="10dp">
 
@@ -31,6 +33,7 @@
             android:layout_marginBottom="100dp"
             android:text="Task Name"
             android:textSize="25dp"
+            android:textColor="@color/blue_700"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"

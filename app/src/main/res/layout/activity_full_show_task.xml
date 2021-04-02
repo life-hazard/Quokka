@@ -20,8 +20,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:focusable="false"
             android:clickable="false"
-            android:textColor="@color/design_default_color_primary"
-            android:textColorHint="@color/design_default_color_primary">
+            android:textColor="@color/blue_700"
+            android:textColorHint="@color/blue_700">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/showTaskNameEdit"

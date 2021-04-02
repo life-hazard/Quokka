@@ -109,7 +109,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="0dp"
-                android:text="@string/number_of_points"
                 android:textAlignment="textEnd"
                 tools:ignore="RtlCompat" />
 

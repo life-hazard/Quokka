@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +40,8 @@ data class IPTaskModel(
     val startDate: Map<String, Int> = mapOf("k" to -1),
     val endDate: Map<String, Int> = mapOf("k" to -1),
     val points: Int = -1,
-    var ownerId: String = ""
+    var ownerId: String = "",
+    val takerId: String = ""
 )
 
 class IPTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -98,10 +100,10 @@ class InProgressFragment : Fragment() {
 
                 //Log.i(TAG, "The task id: ${model.taskId}")
                 tvName.text = model.taskName
-                val start = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"
+                val start = mapToDate(model.startDate["day"], model.startDate["month"], model.startDate["year"])
                 tvStartDate.text = start
                 //tvStartDate.text = model.startDate.values.toString()
-                val end = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"
+                val end = mapToDate(model.endDate["day"], model.endDate["month"], model.endDate["year"])
                 tvEndDate.text = end
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
@@ -129,5 +131,23 @@ class InProgressFragment : Fragment() {
         binding.recyclerViewTasksInProgress.adapter = adapter
 
         return binding.root
+    }
+
+    private fun mapToDate(day: Int?, month: Int?, year: Int?) : String {
+        val setDay = if (day.toString().toInt() < 10) {
+            "0$day"
+        } else {
+            "$day"
+        }
+        val setMonth = if (month.toString().toInt() < 10) {
+            "0$month"
+        } else {
+            "$month"
+        }
+        val setYear = "$year"
+
+        val newDate = "$setDay.$setMonth.$setYear"
+        Log.d(UserTasksFragment.TAG, "The map to date is: $newDate")
+        return newDate
     }
 }

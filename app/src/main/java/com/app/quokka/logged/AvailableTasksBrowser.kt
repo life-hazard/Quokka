@@ -102,10 +102,10 @@ class AvailableTasksBrowser : Fragment() {
                 val tvPoints: TextView = holder.itemView.findViewById(R.id.itemTaskPoints)
 
                 tvName.text = model.taskName
-                val start = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"
+                val start = mapToDate(model.startDate["day"], model.startDate["month"], model.startDate["year"])
                 tvStartDate.text = start
                 //tvStartDate.text = model.startDate.values.toString()
-                val end = "${model.startDate["day"]}.${model.startDate["month"]}.${model.startDate["year"]}"
+                val end = mapToDate(model.endDate["day"], model.endDate["month"], model.endDate["year"])
                 tvEndDate.text = end
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
@@ -132,5 +132,23 @@ class AvailableTasksBrowser : Fragment() {
         binding.recyclerViewAvailableTasks.adapter = adapter
 
         return binding.root
+    }
+
+    private fun mapToDate(day: Int?, month: Int?, year: Int?) : String {
+        val setDay = if (day.toString().toInt() < 10) {
+            "0$day"
+        } else {
+            "$day"
+        }
+        val setMonth = if (month.toString().toInt() < 10) {
+            "0$month"
+        } else {
+            "$month"
+        }
+        val setYear = "$year"
+
+        val newDate = "$setDay.$setMonth.$setYear"
+        Log.d(UserTasksFragment.TAG, "The map to date is: $newDate")
+        return newDate
     }
 }

@@ -77,7 +77,7 @@ class AddTaskActivity : AppCompatActivity() {
 
         val endDate = binding.endDateEdit.text.toString()
          val endDateMap = if (endDate == "") {
-            dateToTimeMap("00.00.0000")
+             dateToTimeMap(mapToDate(startDateMap["day"], startDateMap["month"], startDateMap["year"]))
         } else {
             dateToTimeMap(endDate)
         }
@@ -88,24 +88,61 @@ class AddTaskActivity : AppCompatActivity() {
         val db = Firebase.firestore
         Log.i(TAG, "I made a database value!!")
 
+
         val task = Task(name, description, startDateMap, endDateMap, points, ownerId, takerId = "", status = "available")
         Log.i(TAG, "Task was created: $task")
 
-        db.collection("tasks").add(task).addOnSuccessListener { documentReference ->
-            Log.d(TAG,"DocumentSnapshot written with ID: ${documentReference.id}")
-            Log.i("addTask", "created document")
+
+        // decrease user points
+        db.collection("users").document(ownerId).get().addOnSuccessListener { document ->
+            if (document != null) {
+                val userPoints = document.data?.getValue("points").toString().toInt()
+                if (userPoints >= points) {
+                    val decreasedPoints = userPoints - points
+                    db.collection("users").document(ownerId).update("points", decreasedPoints)
+
+                    // adding task
+                    db.collection("tasks").add(task).addOnSuccessListener { documentReference ->
+                        Log.d(TAG,"DocumentSnapshot written with ID: ${documentReference.id}")
+                        Log.i("addTask", "created document")
+                    }.addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
+
+                    val intent = Intent(this, UserHomePageActivity::class.java)
+                    this.startActivity(intent)
+
+                    // The snackbar disappears too quickly but the toast stays longer
+                    Snackbar.make(binding.root, "Task successfully added.", Snackbar.LENGTH_LONG).show()
+                    Toast.makeText(this, "Task successfully added.", Toast.LENGTH_LONG).show()
+
+                } else {
+                    Snackbar.make(binding.root, "Not enough points", Snackbar.LENGTH_LONG).show()
+                    binding.addButton.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
         }.addOnFailureListener { e ->
-            Log.w(TAG, "Error adding document", e)
-            Log.i("addTask", "error adding document")
+            Log.w("Error adding document", e)
         }
 
-        // TODO Add back button instead of going back
-        val intent = Intent(this, UserHomePageActivity::class.java)
-        this.startActivity(intent)
+//        val task = Task(name, description, startDateMap, endDateMap, points, ownerId, takerId = "", status = "available")
+//        Log.i(TAG, "Task was created: $task")
 
-        // The snackbar disappears too quickly but the toast stays longer
-        Snackbar.make(binding.root, "Task successfully added.", Snackbar.LENGTH_LONG).show()
-        Toast.makeText(this, "Task successfully added.", Toast.LENGTH_LONG).show()
+//        db.collection("tasks").add(task).addOnSuccessListener { documentReference ->
+//            Log.d(TAG,"DocumentSnapshot written with ID: ${documentReference.id}")
+//            Log.i("addTask", "created document")
+//        }.addOnFailureListener { e ->
+//            Log.w(TAG, "Error adding document", e)
+//            Log.i("addTask", "error adding document")
+//        }
+//
+//        val intent = Intent(this, UserHomePageActivity::class.java)
+//        this.startActivity(intent)
+//
+//        // The snackbar disappears too quickly but the toast stays longer
+//        Snackbar.make(binding.root, "Task successfully added.", Snackbar.LENGTH_LONG).show()
+//        Toast.makeText(this, "Task successfully added.", Toast.LENGTH_LONG).show()
 
         //TODO("Change to date format")
 
@@ -207,6 +244,24 @@ class AddTaskActivity : AppCompatActivity() {
     private fun hideProgressBar() {
         binding.progressBar.visibility = View.GONE
         binding.addButton.visibility = View.VISIBLE
+    }
+
+    private fun mapToDate(day: Int?, month: Int?, year: Int?) : String {
+        val setDay = if (day.toString().toInt() < 10) {
+            "0$day"
+        } else {
+            "$day"
+        }
+        val setMonth = if (month.toString().toInt() < 10) {
+            "0$month"
+        } else {
+            "$month"
+        }
+        val setYear = "$year"
+
+        val newDate = "$setDay.$setMonth.$setYear"
+        Log.d(UserTasksFragment.TAG, "The map to date is: $newDate")
+        return newDate
     }
 
     companion object {
