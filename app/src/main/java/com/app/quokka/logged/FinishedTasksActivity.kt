@@ -103,6 +103,11 @@ class FinishedTasksActivity : AppCompatActivity() {
         }
         binding.finishedTasksRecyclerView.adapter = adapter
 
+        binding.goBackArrow.setOnClickListener {
+            val intent = Intent(this, UserHomePageActivity::class.java)
+            this.startActivity(intent)
+        }
+
     }
     private fun mapToDate(day: Int?, month: Int?, year: Int?) : String {
         val setDay = if (day.toString().toInt() < 10) {

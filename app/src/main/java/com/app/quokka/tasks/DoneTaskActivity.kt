@@ -78,12 +78,11 @@ class DoneTaskActivity : AppCompatActivity() {
                             }
                         }
                     }
-
                     val intent = Intent(this, FinishedTasksActivity::class.java)
                     this.startActivity(intent)
                 }
             }
-        }
+        } // end binding confirm button
 
     }
 }

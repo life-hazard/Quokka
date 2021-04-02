@@ -119,26 +119,16 @@ class UserTasksFragment : Fragment() {
                 val tvEndDate: TextView = holder.itemView.findViewById(R.id.itemTaskEndDate)
                 val tvPoints: TextView = holder.itemView.findViewById(R.id.itemTaskPoints)
 
-
-                //Log.i(TAG, "The task id: ${model.taskId}")
                 tvName.text = model.taskName
-
                 val start = mapToDate(model.startDate["day"], model.startDate["month"], model.startDate["year"])
                 tvStartDate.text = start
-                //tvStartDate.text = model.startDate.values.toString()
                 val end = mapToDate(model.endDate["day"], model.endDate["month"], model.endDate["year"])
                 tvEndDate.text = end
-                //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
 
                 holder.itemView.setOnClickListener() { view ->
-//                    val navController = Navigation.findNavController(view)
-//                    navController.navigate(R.id.action_userTasksFragment_to_fullTaskFragment)
                     Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
-                    //Log.i(TAG, "The task id: ${}")
-                    //view.findNavController().navigate(R.id.action_userTasksFragment_to_fullTaskFragment)
-//                    val intent = Intent(context, FullTaskFragment::class.java)
-//                    context?.startActivity(intent)
+
                     val intent = Intent(context, FullUserTaskActivity::class.java)
                     intent.putExtra("fullTaskName", model.taskName) // put data in Intent
                     intent.putExtra("fullTaskDescription", model.taskDescription)
@@ -146,18 +136,14 @@ class UserTasksFragment : Fragment() {
                     intent.putExtra("fullEndDate", end)
                     intent.putExtra("fullPoints", model.points)
                     intent.putExtra("fullTaskOwnerId", model.ownerId)
-
-
+                    intent.putExtra("fullTaskTakerId", model.takerId)
 
                     context!!.startActivity(intent) // start Intent
-
-
                 }
             }
 
 
         }
-
         binding.userTasksRecyclerView.adapter = adapter
 
         return binding.root

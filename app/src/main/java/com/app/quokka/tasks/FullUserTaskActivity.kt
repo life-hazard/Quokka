@@ -32,6 +32,8 @@ class FullUserTaskActivity : AppCompatActivity() {
         val taskEnd = intent.getStringExtra("fullEndDate")
         val taskPoints = intent.getStringExtra("fullPoints")
         val taskOwner = intent.getStringExtra("fullTaskOwnerId").toString()
+        val taskTaker = intent.getStringExtra("fullTaskTakerId").toString()
+
         // Putting data from CardView into TextViews
         binding.taskNameEdit.setText(taskName)
         binding.taskDescriptionEdit.setText(taskDescription)
@@ -49,11 +51,26 @@ class FullUserTaskActivity : AppCompatActivity() {
                 }
             }
 
+        if (taskTaker != "") {
+            binding.fullTaskTakerFrame.visibility = View.VISIBLE
+
+            db.collection("users")
+                .document(taskTaker)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document != null) {
+                        val data = document.data
+                        val gotName = data?.getValue("name")
+                        Log.d(TAG, "Taker name: $gotName, and ID: ${document.id}")
+                        binding.fullTaskTakerEdit.setText("Taken by $gotName")
+                    }
+                }
+        }
+
         // Adding parameter
         val currentUserId = ""
         val sharedPreferences: SharedPreferences =
             this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        //var taskTakerId: String = sharedPreferences.getString("id_key", "default_value").toString()
         var taskId = ""
 
         val data = db.collection("tasks").document()
@@ -88,29 +105,36 @@ class FullUserTaskActivity : AppCompatActivity() {
                             Log.d(FullTaskActivity.TAG, "task id: $taskId")
 
                             db.collection("tasks").document(taskId)
-                                .update("taskName", newTaskName, "taskDescription", newTaskDescription, "startDate", newStartDate, "endDate", newEndDate)
+                                .update(
+                                    "taskName",
+                                    newTaskName,
+                                    "taskDescription",
+                                    newTaskDescription,
+                                    "startDate",
+                                    newStartDate,
+                                    "endDate",
+                                    newEndDate
+                                )
                                 .addOnSuccessListener {
-                                Log.d(FullTaskActivity.TAG, "Task updated!!")
-                            }
+                                    Log.d(FullTaskActivity.TAG, "Task updated!!")
+                                }
                         }
                     }
                 Log.d(FullTaskActivity.TAG, "Task id: $taskId")
                 Snackbar.make(binding.root, "Task updated.", Snackbar.LENGTH_LONG).show()
                 changeToUneditable()
-                //intent = Intent(this, UserHomePageActivity::class.java)
-                //this.startActivity(intent)
             }
         }
-
     }
 
     private fun changeToEditable() {
         // hide buttons
         binding.fullButtonEditTask.visibility = View.GONE
-        //binding.fullButtonBack.visibility = View.GONE
+
         // show buttons
         binding.fullButtonSave.visibility = View.VISIBLE
         binding.fullButtonDiscard.visibility = View.VISIBLE
+
         // enable editing views
         binding.taskNameFrame.isFocusable = true
         binding.taskNameFrame.isFocusableInTouchMode = true
@@ -141,10 +165,11 @@ class FullUserTaskActivity : AppCompatActivity() {
     private fun changeToUneditable() {
         // show buttons
         binding.fullButtonEditTask.visibility = View.VISIBLE
-        //binding.fullButtonBack.visibility = View.VISIBLE
+
         // hide buttons
         binding.fullButtonSave.visibility = View.GONE
         binding.fullButtonDiscard.visibility = View.GONE
+
         // enable editing views
         binding.taskNameFrame.isFocusable = false
         binding.taskNameFrame.isFocusableInTouchMode = false
@@ -175,16 +200,18 @@ class FullUserTaskActivity : AppCompatActivity() {
     private fun dateToTimeMap(date: String): Map<String, Int> {
         Log.i(TAG, "The Date: $date")
         val day = (date[0].toString() + date[1].toString()).toInt()
-        var month: Int
-        var year: Int
+        val month: Int
+        val year: Int
         if (date.length == 9) {
             month = date[3].toString().toInt()
             Log.i(TAG, "Date[3] == ${date[3]} month == $month")
-            year = (date[5].toString() + date[6].toString() + date[7].toString() + date[8].toString()).toInt()
+            year =
+                (date[5].toString() + date[6].toString() + date[7].toString() + date[8].toString()).toInt()
             Log.i(TAG, "The day: $day, month: $month, year: $year")
         } else {
             month = (date[3].toString() + date[4].toString()).toInt()
-            year = (date[6].toString() + date[7].toString() + date[8].toString() + date[9].toString()).toInt()
+            year =
+                (date[6].toString() + date[7].toString() + date[8].toString() + date[9].toString()).toInt()
             Log.i(TAG, "The day: $day, month: $month, year: $year")
         }
 

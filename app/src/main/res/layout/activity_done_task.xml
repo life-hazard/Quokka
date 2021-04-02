@@ -8,169 +8,180 @@
         android:layout_height="match_parent"
         tools:context=".tasks.DoneTaskActivity">
 
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/doneTaskNameFrame"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:textAlignment="center"
+            android:clickable="false"
+            android:focusable="false"
             android:hint="Task name"
+            android:textAlignment="center"
+            android:textColor="@color/blue_700"
+            android:textColorHint="@color/blue_700"
+            app:layout_constraintBottom_toTopOf="@id/doneTaskDoneByFrame"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/doneTaskDoneByFrame"
-            android:focusable="false"
-            android:clickable="false"
-            android:textColor="@color/blue_700"
-            android:textColorHint="@color/blue_700">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/doneTaskNameEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
+                android:clickable="false"
                 android:focusable="false"
-                android:clickable="false"/>
+                android:textAlignment="center" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/showTaskOwnerFrame"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:hint="For Task Owner"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/showTaskNameFrame"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:focusable="false"-->
-<!--            android:clickable="false">-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/showTaskOwnerFrame"-->
+        <!--            android:layout_width="300dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="40dp"-->
+        <!--            android:hint="For Task Owner"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/showTaskNameFrame"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            android:focusable="false"-->
+        <!--            android:clickable="false">-->
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/showTaskOwnerEdit"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textAlignment="center"-->
-<!--                android:focusable="false"-->
-<!--                android:clickable="false"/>-->
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:id="@+id/showTaskOwnerEdit"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:focusable="false"-->
+        <!--                android:clickable="false"/>-->
 
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/doneTaskDescriptionFrame"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:hint="Description"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/doneTaskNameFrame"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:scrollbars="vertical"-->
-<!--            android:scrollbarFadeDuration="@android:integer/config_shortAnimTime"-->
-<!--            android:clickable="false"-->
-<!--            android:focusable="false">-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/doneTaskDescriptionFrame"-->
+        <!--            android:layout_width="300dp"-->
+        <!--            android:layout_height="200dp"-->
+        <!--            android:layout_marginTop="40dp"-->
+        <!--            android:hint="Description"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/doneTaskNameFrame"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            android:scrollbars="vertical"-->
+        <!--            android:scrollbarFadeDuration="@android:integer/config_shortAnimTime"-->
+        <!--            android:clickable="false"-->
+        <!--            android:focusable="false">-->
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/showTaskDescriptionEdit"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:textAlignment="viewStart"-->
-<!--                android:focusable="false"-->
-<!--                android:clickable="false"/>-->
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:id="@+id/showTaskDescriptionEdit"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:textAlignment="viewStart"-->
+        <!--                android:focusable="false"-->
+        <!--                android:clickable="false"/>-->
 
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/showTaskStartDateFrame"-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginEnd="0dp"-->
-<!--            android:hint="Start date"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/showTaskDescriptionFrame"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/showTaskEndDateFrame"-->
-<!--            android:clickable="false"-->
-<!--            android:focusable="false">-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/showTaskStartDateFrame"-->
+        <!--            android:layout_width="120dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:layout_marginEnd="0dp"-->
+        <!--            android:hint="Start date"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/showTaskDescriptionFrame"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@id/showTaskEndDateFrame"-->
+        <!--            android:clickable="false"-->
+        <!--            android:focusable="false">-->
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/showTaskStartDateEdit"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:textAlignment="center"-->
-<!--                android:inputType="date"-->
-<!--                android:focusable="false"-->
-<!--                android:clickable="false"/>-->
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:id="@+id/showTaskStartDateEdit"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:inputType="date"-->
+        <!--                android:focusable="false"-->
+        <!--                android:clickable="false"/>-->
 
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/showTaskEndDateFrame"-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:layout_marginEnd="0dp"-->
-<!--            android:hint="End date"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/showTaskDescriptionFrame"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/showTaskStartDateFrame"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            android:clickable="false"-->
-<!--            android:focusable="false">-->
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/showTaskEndDateFrame"-->
+        <!--            android:layout_width="120dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:layout_marginEnd="0dp"-->
+        <!--            android:hint="End date"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/showTaskDescriptionFrame"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/showTaskStartDateFrame"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            android:clickable="false"-->
+        <!--            android:focusable="false">-->
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/showTaskEndDateEdit"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:textAlignment="center"-->
-<!--                android:inputType="date"-->
-<!--                android:focusable="false"-->
-<!--                android:clickable="false"/>-->
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:id="@+id/showTaskEndDateEdit"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:inputType="date"-->
+        <!--                android:focusable="false"-->
+        <!--                android:clickable="false"/>-->
 
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/doneTaskDoneByFrame"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:hint="Done by"
-            app:layout_constraintTop_toBottomOf="@id/doneTaskNameFrame"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/rateUserTextFrame"
+            android:clickable="false"
             android:focusable="false"
-            android:clickable="false">
+            android:hint="Done by"
+            app:layout_constraintBottom_toTopOf="@id/rateUserText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/doneTaskNameFrame">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/doneTaskDoneByEdit"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/rateUserTextFrame"
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/rateUserTextFrame"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@id/doneTaskDoneByFrame"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/doneTaskUserRatingBar"-->
+        <!--            android:focusable="false"-->
+        <!--            android:clickable="false">-->
+
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:id="@+id/rateUserTextEdit"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:text="RATE"-->
+        <!--                android:textAlignment="center"-->
+        <!--                android:focusable="false"-->
+        <!--                android:clickable="false"/>-->
+
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <TextView
+            android:id="@+id/rateUserText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            app:layout_constraintTop_toBottomOf="@id/doneTaskDoneByFrame"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="RATE"
+            android:textColor="@color/blue_200"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/doneTaskUserRatingBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/doneTaskUserRatingBar"
-            android:focusable="false"
-            android:clickable="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/rateUserTextEdit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="RATE"
-                android:textAlignment="center"
-                android:focusable="false"
-                android:clickable="false"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/doneTaskDoneByFrame" />
 
         <RatingBar
             android:id="@+id/doneTaskUserRatingBar"
@@ -179,10 +190,10 @@
             android:layout_marginTop="0dp"
             android:numStars="5"
 
-            app:layout_constraintTop_toBottomOf="@id/rateUserTextFrame"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/doneButtonConfirm"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/doneButtonConfirm"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rateUserText" />
 
         <Button
             android:id="@+id/doneButtonConfirm"
@@ -193,8 +204,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/doneTaskUserRatingBar"/>
+            app:layout_constraintTop_toBottomOf="@id/doneTaskUserRatingBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>
