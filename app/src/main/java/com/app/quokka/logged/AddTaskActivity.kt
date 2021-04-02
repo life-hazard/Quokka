@@ -59,7 +59,8 @@ class AddTaskActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences =
+            this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
 
         val ownerId = sharedPreferences.getString("id_key", "default_value").toString()
         Log.i(TAG, "Task Owner Id value: $ownerId")
@@ -76,8 +77,14 @@ class AddTaskActivity : AppCompatActivity() {
         }
 
         val endDate = binding.endDateEdit.text.toString()
-         val endDateMap = if (endDate == "") {
-             dateToTimeMap(mapToDate(startDateMap["day"], startDateMap["month"], startDateMap["year"]))
+        val endDateMap = if (endDate == "") {
+            dateToTimeMap(
+                mapToDate(
+                    startDateMap["day"],
+                    startDateMap["month"],
+                    startDateMap["year"]
+                )
+            )
         } else {
             dateToTimeMap(endDate)
         }
@@ -89,7 +96,16 @@ class AddTaskActivity : AppCompatActivity() {
         Log.i(TAG, "I made a database value!!")
 
 
-        val task = Task(name, description, startDateMap, endDateMap, points, ownerId, takerId = "", status = "available")
+        val task = Task(
+            name,
+            description,
+            startDateMap,
+            endDateMap,
+            points,
+            ownerId,
+            takerId = "",
+            status = "available"
+        )
         Log.i(TAG, "Task was created: $task")
 
 
@@ -103,7 +119,7 @@ class AddTaskActivity : AppCompatActivity() {
 
                     // adding task
                     db.collection("tasks").add(task).addOnSuccessListener { documentReference ->
-                        Log.d(TAG,"DocumentSnapshot written with ID: ${documentReference.id}")
+                        Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
                         Log.i("addTask", "created document")
                     }.addOnFailureListener { e ->
                         Log.w(TAG, "Error adding document", e)
@@ -125,27 +141,7 @@ class AddTaskActivity : AppCompatActivity() {
         }.addOnFailureListener { e ->
             Log.w("Error adding document", e)
         }
-
-//        val task = Task(name, description, startDateMap, endDateMap, points, ownerId, takerId = "", status = "available")
-//        Log.i(TAG, "Task was created: $task")
-
-//        db.collection("tasks").add(task).addOnSuccessListener { documentReference ->
-//            Log.d(TAG,"DocumentSnapshot written with ID: ${documentReference.id}")
-//            Log.i("addTask", "created document")
-//        }.addOnFailureListener { e ->
-//            Log.w(TAG, "Error adding document", e)
-//            Log.i("addTask", "error adding document")
-//        }
-//
-//        val intent = Intent(this, UserHomePageActivity::class.java)
-//        this.startActivity(intent)
-//
-//        // The snackbar disappears too quickly but the toast stays longer
-//        Snackbar.make(binding.root, "Task successfully added.", Snackbar.LENGTH_LONG).show()
-//        Toast.makeText(this, "Task successfully added.", Toast.LENGTH_LONG).show()
-
-        //TODO("Change to date format")
-
+        // TODO("Change to date format")
     }
 
     private fun dateToTimeMap(date: String): Map<String, Int> {
@@ -224,16 +220,13 @@ class AddTaskActivity : AppCompatActivity() {
             }
             // Add that a smaller day and month is acceptable if year is bigger
         }
-
         if (taskPoints.isNotEmpty() && taskPoints.toInt() > 0) {
             Log.i("add task", "Correct task points: $taskPoints")
         } else {
             binding.pointsForTask.error = "Incorrect amount"
             valid = false
         }
-
         return valid
-
     }
 
     private fun showProgressBar() {
@@ -246,7 +239,7 @@ class AddTaskActivity : AppCompatActivity() {
         binding.addButton.visibility = View.VISIBLE
     }
 
-    private fun mapToDate(day: Int?, month: Int?, year: Int?) : String {
+    private fun mapToDate(day: Int?, month: Int?, year: Int?): String {
         val setDay = if (day.toString().toInt() < 10) {
             "0$day"
         } else {

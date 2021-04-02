@@ -30,6 +30,7 @@ class FullShowTaskActivity : AppCompatActivity() {
         val taskEnd = intent.getStringExtra("fullEndDate")
         val taskPoints = intent.getStringExtra("fullPoints")
         val taskOwner = intent.getStringExtra("fullTaskOwnerId").toString()
+
         // Putting data from CardView into TextViews
         binding.showTaskNameEdit.setText(taskName)
         binding.showTaskDescriptionEdit.setText(taskName)
@@ -46,32 +47,35 @@ class FullShowTaskActivity : AppCompatActivity() {
                     binding.showTaskOwnerEdit.setText("For $gotName")
                 }
             }
-        var taskId = ""
 
         binding.showButtonConfirmCompletion.setOnClickListener {
             AlertDialog.Builder(this)
                 .setTitle("Task completion")
                 .setMessage("Are you sure you want to mark the task as COMPLETE?")
                 .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
-                    // set in db task as completed
-                    db.collection("tasks").whereEqualTo("taskName", taskName).whereEqualTo("ownerId", taskOwner).get().addOnSuccessListener { documents ->
-                        for (document in documents) {
-                            val currentTask = document.id
 
-                            db.collection("tasks").document(currentTask).update("status", "complete")
+                    // set in db task as completed
+                    db.collection("tasks").whereEqualTo("taskName", taskName)
+                        .whereEqualTo("ownerId", taskOwner).get()
+                        .addOnSuccessListener { documents ->
+                            for (document in documents) {
+                                val currentTask = document.id
+
+                                db.collection("tasks").document(currentTask)
+                                    .update("status", "complete")
+                            }
                         }
-                    }
 
                     Snackbar.make(binding.root, "TASK COMPLETED", Snackbar.LENGTH_LONG).show()
                     val intent = Intent(this, UserHomePageActivity::class.java)
                     this.startActivity(intent)
-                    // do something
                 })
                 .setNegativeButton("No", null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show()
         }
     }
+
     companion object {
         const val TAG = "completeTask"
     }

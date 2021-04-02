@@ -98,7 +98,6 @@ class InProgressFragment : Fragment() {
                 val tvEndDate: TextView = holder.itemView.findViewById(R.id.itemTaskEndDate)
                 val tvPoints: TextView = holder.itemView.findViewById(R.id.itemTaskPoints)
 
-
                 //Log.i(TAG, "The task id: ${model.taskId}")
                 tvName.text = model.taskName
                 val start = mapToDate(model.startDate["day"], model.startDate["month"], model.startDate["year"])
@@ -119,14 +118,9 @@ class InProgressFragment : Fragment() {
                     intent.putExtra("fullPoints", model.points.toString())
                     intent.putExtra("fullTaskOwnerId", model.ownerId)
 
-
                     context!!.startActivity(intent) // start Intent
-
-
                 }
             }
-
-
         }
 
         binding.recyclerViewTasksInProgress.adapter = adapter

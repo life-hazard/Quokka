@@ -13,6 +13,8 @@ import com.app.quokka.logged.AddTaskActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class FullUserTaskActivity : AppCompatActivity() {
@@ -28,8 +30,8 @@ class FullUserTaskActivity : AppCompatActivity() {
         // Taking data from CardView
         val taskName = intent.getStringExtra("fullTaskName")
         val taskDescription = intent.getStringExtra("fullTaskDescription")
-        val taskStart = intent.getStringExtra("fullStartDate")
-        val taskEnd = intent.getStringExtra("fullEndDate")
+        val taskStart = intent.getStringExtra("fullStartDate").toString()
+        val taskEnd = intent.getStringExtra("fullEndDate").toString()
         val taskPoints = intent.getStringExtra("fullPoints")
         val taskOwner = intent.getStringExtra("fullTaskOwnerId").toString()
         val taskTaker = intent.getStringExtra("fullTaskTakerId").toString()
@@ -53,6 +55,7 @@ class FullUserTaskActivity : AppCompatActivity() {
 
         if (taskTaker != "") {
             binding.fullTaskTakerFrame.visibility = View.VISIBLE
+            binding.fullButtonEditTask.visibility = View.GONE
 
             db.collection("users")
                 .document(taskTaker)
@@ -88,38 +91,46 @@ class FullUserTaskActivity : AppCompatActivity() {
                 // Getting new information
                 val newTaskName = binding.taskNameEdit.text.toString()
                 val newTaskDescription = binding.taskDescriptionEdit.text.toString()
+
+                // check if new start date is not earlier then old start date
+                val oldStartDate = dateToTimeMap(taskStart)
                 val newStartDate = dateToTimeMap(binding.taskStartDateEdit.text.toString())
+
+                //check if new end date is equal or later then new task date
+                val oldEndDate = dateToTimeMap(taskEnd)
                 val newEndDate = dateToTimeMap(binding.taskEndDateEdit.text.toString())
+                if (isDateValid(oldEndDate, newEndDate) && isDateValid(oldStartDate, newStartDate)) {
+                    Log.d(TAG, "The dates are valid")
 
-                // Updating this task
-                db.collection("tasks")
-                    .whereEqualTo("taskName", taskName)
-                    .whereEqualTo("ownerId", taskOwner)
-                    .whereEqualTo("takerId", "")
-                    .get()
-                    .addOnSuccessListener { documents ->
-                        for (document in documents) {
-                            Log.d(FullTaskActivity.TAG, "${document.id}")
-                            Log.d(FullTaskActivity.TAG, "Task owner: $taskOwner")
-                            taskId = document.id
-                            Log.d(FullTaskActivity.TAG, "task id: $taskId")
+                    // Updating this task
+                    db.collection("tasks")
+                        .whereEqualTo("taskName", taskName)
+                        .whereEqualTo("ownerId", taskOwner)
+                        .whereEqualTo("takerId", "")
+                        .get()
+                        .addOnSuccessListener { documents ->
+                            for (document in documents) {
+                                Log.d(FullTaskActivity.TAG, "${document.id}")
+                                Log.d(FullTaskActivity.TAG, "Task owner: $taskOwner")
+                                taskId = document.id
+                                Log.d(FullTaskActivity.TAG, "task id: $taskId")
 
-                            db.collection("tasks").document(taskId)
-                                .update(
-                                    "taskName",
-                                    newTaskName,
-                                    "taskDescription",
-                                    newTaskDescription,
-                                    "startDate",
-                                    newStartDate,
-                                    "endDate",
-                                    newEndDate
-                                )
-                                .addOnSuccessListener {
-                                    Log.d(FullTaskActivity.TAG, "Task updated!!")
-                                }
+                                db.collection("tasks").document(taskId)
+                                    .update(
+                                        "taskName", newTaskName,
+                                        "taskDescription", newTaskDescription,
+                                        "startDate", newStartDate,
+                                        "endDate", newEndDate
+                                    )
+                                    .addOnSuccessListener {
+                                        Log.d(FullTaskActivity.TAG, "Task updated!!")
+                                    }
+                            }
                         }
-                    }
+                } else {
+                    Log.d(TAG, "The dates are not valid")
+                }
+
                 Log.d(FullTaskActivity.TAG, "Task id: $taskId")
                 Snackbar.make(binding.root, "Task updated.", Snackbar.LENGTH_LONG).show()
                 changeToUneditable()
@@ -202,6 +213,7 @@ class FullUserTaskActivity : AppCompatActivity() {
         val day = (date[0].toString() + date[1].toString()).toInt()
         val month: Int
         val year: Int
+
         if (date.length == 9) {
             month = date[3].toString().toInt()
             Log.i(TAG, "Date[3] == ${date[3]} month == $month")
@@ -218,6 +230,30 @@ class FullUserTaskActivity : AppCompatActivity() {
         val mapDate = mapOf("day" to day, "month" to month, "year" to year)
         Log.i(AddTaskActivity.TAG, "Map of date: ${mapDate.values}")
         return mapDate
+    }
+
+    private fun isDateValid(firstDate: Map<String, Int>, lastDate: Map<String, Int>): Boolean {
+        // old date
+        val oDay = firstDate.getValue("day")
+        val oMonth = firstDate.getValue("month")
+        val oYear = firstDate.getValue("year")
+
+        // new date
+        val nDay = lastDate.getValue("day")
+        val nMonth = lastDate.getValue("month")
+        val nYear = lastDate.getValue("year")
+
+        var valid = false
+
+        if (// day can be equal and bigger | month can be equal or bigger | year can be equal or bigger
+            nDay >= oDay && nMonth >= oMonth && nYear >= oYear ||
+            // day can be anything | month can be bigger | year can be equal or bigger
+            nMonth > oMonth && nYear >= oYear ||
+            // day can be anything | month can be anything | year can be bigger
+            nYear > oYear) {
+            valid = true
+        }
+        return valid
     }
 
     companion object {

@@ -31,6 +31,7 @@ class FullTaskActivity : AppCompatActivity() {
         val taskEnd = intent.getStringExtra("fullEndDate")
         val taskPoints = intent.getStringExtra("fullPoints")
         val taskOwner = intent.getStringExtra("fullTaskOwnerId").toString()
+
         // Putting data from CardView into TextViews
         binding.fullTaskNameEdit.setText(taskName)
         binding.fullTaskDescriptionEdit.setText(taskName)
@@ -52,22 +53,11 @@ class FullTaskActivity : AppCompatActivity() {
         // Adding parameter
         val currentUserId = ""
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-        var taskTakerId: String = sharedPreferences.getString("id_key", "default_value").toString()
+        val taskTakerId: String = sharedPreferences.getString("id_key", "default_value").toString()
         var taskId = ""
 
-        //val db = Firebase.firestore
-
-        val data = db.collection("tasks").document()
-
-
-        binding.fullButtonTakeTask.setOnClickListener(){
-//            db.collection("tasks").document(taskId).update("takerId", currentUserId).addOnSuccessListener { document ->
-//                binding.fullTaskOwner.text = taskOwner
-//                Log.d(TAG, "Updated task: $document")
-//            }
-            //binding.fullTaskOwner.text = taskOwner
-            //Log.d(TAG, "Updated task")
-            val doc = db.collection("tasks")
+        binding.fullButtonTakeTask.setOnClickListener{
+            db.collection("tasks")
                 .whereEqualTo("taskName", taskName)
                 .whereEqualTo("ownerId", taskOwner)
                 .get()

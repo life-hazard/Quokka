@@ -39,6 +39,7 @@ private const val ARG_PARAM2 = "param2"
 // Model - make it an outside class later
 // ...but model is a data class so I can use those I made to write into the db...
 // but I need a default element for each of the variables
+
 data class TaskModel1(
     val taskName: String = "",
     var taskDescription: String = "",
@@ -67,7 +68,12 @@ class AvailableTasksBrowser : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate<FragmentAvailableTasksBrowserBinding>(inflater, R.layout.fragment_available_tasks_browser, container, false)
+        binding = DataBindingUtil.inflate<FragmentAvailableTasksBrowserBinding>(
+            inflater,
+            R.layout.fragment_available_tasks_browser,
+            container,
+            false
+        )
 
         auth = Firebase.auth
 
@@ -81,13 +87,15 @@ class AvailableTasksBrowser : Fragment() {
             .whereEqualTo("status", "available")
             .whereNotEqualTo("ownerId", sharedIdValue)
 
-        val options = FirestoreRecyclerOptions.Builder<TaskModel1>().setQuery(query, TaskModel1::class.java)
-            .setLifecycleOwner(this).build()
+        val options =
+            FirestoreRecyclerOptions.Builder<TaskModel1>().setQuery(query, TaskModel1::class.java)
+                .setLifecycleOwner(this).build()
 
         // SHOULD BE A SEPARATE CLASS FILE
-        val adapter = object: FirestoreRecyclerAdapter<TaskModel1, TaskViewHolder1>(options) {
+        val adapter = object : FirestoreRecyclerAdapter<TaskModel1, TaskViewHolder1>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder1 {
-                val view: View = LayoutInflater.from(context).inflate(R.layout.recyclerview_task_item, parent, false)
+                val view: View = LayoutInflater.from(context)
+                    .inflate(R.layout.recyclerview_task_item, parent, false)
                 return TaskViewHolder1(view)
             }
 
@@ -102,17 +110,21 @@ class AvailableTasksBrowser : Fragment() {
                 val tvPoints: TextView = holder.itemView.findViewById(R.id.itemTaskPoints)
 
                 tvName.text = model.taskName
-                val start = mapToDate(model.startDate["day"], model.startDate["month"], model.startDate["year"])
+                val start = mapToDate(
+                    model.startDate["day"],
+                    model.startDate["month"],
+                    model.startDate["year"]
+                )
                 tvStartDate.text = start
                 //tvStartDate.text = model.startDate.values.toString()
-                val end = mapToDate(model.endDate["day"], model.endDate["month"], model.endDate["year"])
+                val end =
+                    mapToDate(model.endDate["day"], model.endDate["month"], model.endDate["year"])
                 tvEndDate.text = end
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
 
                 holder.itemView.setOnClickListener() {
                     Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
-
 
                     val intent = Intent(context, FullTaskActivity::class.java)
                     intent.putExtra("fullTaskName", model.taskName) // put image data in Intent
@@ -122,19 +134,16 @@ class AvailableTasksBrowser : Fragment() {
                     intent.putExtra("fullPoints", model.points.toString())
                     intent.putExtra("fullTaskOwnerId", model.ownerId)
 
-
                     context!!.startActivity(intent) // start Intent
                 }
             }
-
         }
-
         binding.recyclerViewAvailableTasks.adapter = adapter
 
         return binding.root
     }
 
-    private fun mapToDate(day: Int?, month: Int?, year: Int?) : String {
+    private fun mapToDate(day: Int?, month: Int?, year: Int?): String {
         val setDay = if (day.toString().toInt() < 10) {
             "0$day"
         } else {
