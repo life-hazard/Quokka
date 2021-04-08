@@ -117,8 +117,11 @@ class AvailableTasksBrowser : Fragment() {
                 )
                 tvStartDate.text = start
                 //tvStartDate.text = model.startDate.values.toString()
-                val end =
-                    mapToDate(model.endDate["day"], model.endDate["month"], model.endDate["year"])
+                val end = mapToDate(
+                    model.endDate["day"],
+                    model.endDate["month"],
+                    model.endDate["year"]
+                )
                 tvEndDate.text = end
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()

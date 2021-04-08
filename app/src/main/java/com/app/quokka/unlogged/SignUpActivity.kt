@@ -149,6 +149,8 @@ class SignUpActivity : AppCompatActivity() {
         val password = binding.passwordEditTextSignUpA.text.toString()
         val passwordCheck = binding.password2EditTextSignUpA.text.toString()
         if (TextUtils.isEmpty(password) && TextUtils.isEmpty(passwordCheck)) {
+            binding.passwordEditTextSignUpAFrame.isPasswordVisibilityToggleEnabled = false
+            binding.password2EditTextSignUpAFrame.isPasswordVisibilityToggleEnabled = false
             binding.passwordEditTextSignUpA.error = "Required."
             binding.password2EditTextSignUpA.error = "Required"
             valid = false
