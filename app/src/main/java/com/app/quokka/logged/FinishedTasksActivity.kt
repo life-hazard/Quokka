@@ -9,20 +9,15 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.quokka.R
 import com.app.quokka.databinding.ActivityFinishedTasksBinding
 import com.app.quokka.tasks.DoneTaskActivity
-import com.app.quokka.tasks.FullShowTaskActivity
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-
-
-// TODO I have to make a recycler view with tasks with status completed
 
 data class FinTaskModel(
     var taskName: String = "",
@@ -44,6 +39,7 @@ class FinishedTasksActivity : AppCompatActivity() {
     private val sharedPrefFile = "kotlinsharedpreference"
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("Opened", "FinishedTasksActivity")
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_finished_tasks)
 
@@ -55,7 +51,7 @@ class FinishedTasksActivity : AppCompatActivity() {
             .whereEqualTo("ownerId", sharedIdValue)
             .whereEqualTo("status", "complete")
 
-        // TODO I think there are errors with other options val in recyclerview fragments -> data class not used
+        // TODO I think there are errors with other options val in recyclerview fragments -> data class not used; delete above classes and later make them in separate files
         val options = FirestoreRecyclerOptions.Builder<UserTaskModel>()
             .setQuery(query, UserTaskModel::class.java).setLifecycleOwner(this).build()
 
@@ -91,18 +87,15 @@ class FinishedTasksActivity : AppCompatActivity() {
                         model.startDate["year"]
                     )
                     tvStartDate.text = start
-                    //tvStartDate.text = model.startDate.values.toString()
                     val end = mapToDate(
                         model.endDate["day"],
                         model.endDate["month"],
                         model.endDate["year"]
                     )
                     tvEndDate.text = end
-                    //tvEndDate.text = model.endDate.values.toString()
                     tvPoints.text = model.points.toString()
 
-                    holder.itemView.setOnClickListener() { view ->
-                        //Toast.makeText(this@FinishedTasksActivity, "CLICK!!", Toast.LENGTH_SHORT).show()
+                    holder.itemView.setOnClickListener() { _ ->
                         val intent =
                             Intent(this@FinishedTasksActivity, DoneTaskActivity::class.java)
                         intent.putExtra("fullTaskName", model.taskName) // put image data in Intent

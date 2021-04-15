@@ -13,9 +13,6 @@ import com.app.quokka.logged.AddTaskActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-
 
 class FullUserTaskActivity : AppCompatActivity() {
 
@@ -26,6 +23,7 @@ class FullUserTaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_full_user_task)
+        Log.i("Opened", "FullUserTaskActivity")
 
         // Taking data from CardView
         val taskName = intent.getStringExtra("fullTaskName")
@@ -71,7 +69,6 @@ class FullUserTaskActivity : AppCompatActivity() {
         }
 
         // Adding parameter
-        val currentUserId = ""
         val sharedPreferences: SharedPreferences =
             this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         var taskId = ""
@@ -99,7 +96,11 @@ class FullUserTaskActivity : AppCompatActivity() {
                 //check if new end date is equal or later then new task date
                 val oldEndDate = dateToTimeMap(taskEnd)
                 val newEndDate = dateToTimeMap(binding.taskEndDateEdit.text.toString())
-                if (isDateValid(oldEndDate, newEndDate) && isDateValid(oldStartDate, newStartDate)) {
+                if (isDateValid(oldEndDate, newEndDate) && isDateValid(
+                        oldStartDate,
+                        newStartDate
+                    )
+                ) {
                     Log.d(TAG, "The dates are valid")
 
                     // Updating this task
@@ -250,7 +251,8 @@ class FullUserTaskActivity : AppCompatActivity() {
             // day can be anything | month can be bigger | year can be equal or bigger
             nMonth > oMonth && nYear >= oYear ||
             // day can be anything | month can be anything | year can be bigger
-            nYear > oYear) {
+            nYear > oYear
+        ) {
             valid = true
         }
         return valid

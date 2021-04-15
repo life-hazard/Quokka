@@ -22,6 +22,7 @@ class FullShowTaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_full_show_task)
+        Log.i("Opened", "FullShowTaskActivity")
 
         // Taking data from CardView
         val taskName = intent.getStringExtra("fullTaskName")
@@ -52,7 +53,7 @@ class FullShowTaskActivity : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle("Task completion")
                 .setMessage("Are you sure you want to mark the task as COMPLETE?")
-                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, id ->
+                .setPositiveButton("Yes", DialogInterface.OnClickListener { _, _ ->
 
                     // set in db task as completed
                     db.collection("tasks").whereEqualTo("taskName", taskName)

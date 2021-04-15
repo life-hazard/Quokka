@@ -10,12 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.quokka.R
 import com.app.quokka.databinding.FragmentInProgressBinding
-import com.app.quokka.recyclerview.TaskAdapter
 import com.app.quokka.tasks.FullShowTaskActivity
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -31,8 +29,6 @@ import kotlinx.android.synthetic.main.*
  *
  * Holds Tasks that logged user said they'll complete
  */
-
-// TODO check tasks filtering
 
 data class IPTaskModel(
     val taskName: String = "",
@@ -50,7 +46,6 @@ class IPTaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 class InProgressFragment : Fragment() {
 
     private lateinit var binding: FragmentInProgressBinding
-    lateinit var adapter: TaskAdapter
     val db = Firebase.firestore
     private val sharedPrefFile = "kotlinsharedpreference"
 
@@ -62,6 +57,7 @@ class InProgressFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.i("Opened", "InProgressTask")
         binding = DataBindingUtil.inflate<FragmentInProgressBinding>(inflater,
             R.layout.fragment_in_progress, container, false)
 
@@ -108,8 +104,7 @@ class InProgressFragment : Fragment() {
                 //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
 
-                holder.itemView.setOnClickListener() { view ->
-                    Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
+                holder.itemView.setOnClickListener() { _ ->
                     val intent = Intent(context, FullShowTaskActivity::class.java)
                     intent.putExtra("fullTaskName", model.taskName) // put image data in Intent
                     intent.putExtra("fullTaskDescription", model.taskDescription)

@@ -11,7 +11,6 @@ import com.app.quokka.R
 import com.app.quokka.databinding.ActivityUserProfileEditBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_user_profile.*
 
 class UserProfileEditActivity : AppCompatActivity() {
 
@@ -22,7 +21,7 @@ class UserProfileEditActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_profile_edit)
-
+        Log.i("Opened", "UserProfileActivityEdit")
 
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val userId = sharedPreferences.getString("id_key", "default_value").toString()
@@ -105,13 +104,6 @@ class UserProfileEditActivity : AppCompatActivity() {
                 Log.d(TAG, "New Password")
                 userDoc.update("password", newPassword)
             }
-//
-//            db.collection("users").document(userId).get().addOnSuccessListener { document ->
-//                if (document != null) {
-//                    val points = document.data?.getValue("points").toString()
-//                    binding.numberOfPoints.text = points
-//                }
-//            }
 
             intent = Intent(this, UserProfileActivity::class.java)
             this.startActivity(intent)

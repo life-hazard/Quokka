@@ -20,10 +20,7 @@ class DoneTaskActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_done_task)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_done_task)
-
-        // take owner from db and put into binding.text --> done
-        // update status if button pressed
-        // update user rating if button pressed
+        Log.i("Opened", "DoneTaskActivity")
 
         // Taking data from CardView
         val taskName = intent.getStringExtra("fullTaskName")
@@ -51,7 +48,7 @@ class DoneTaskActivity : AppCompatActivity() {
             db.collection("users").document(taskTaker).get().addOnSuccessListener { document ->
                 if (document != null) {
                     val r = document.data?.getValue("rating").toString()
-                    val ratingMap = r.substring(1, r.length-1).split(", ").associate {
+                    val ratingMap = r.substring(1, r.length - 1).split(", ").associate {
                         val (left, right) = it.split("=")
                         left to right.toFloat()
                     }
@@ -60,24 +57,27 @@ class DoneTaskActivity : AppCompatActivity() {
                     val newDivider = ratingMap.getValue("divider") + 1
 
                     val newUserRating = newSum / newDivider
-                    Log.i("UserRating","New Rating: $newUserRating")
+                    Log.i("UserRating", "New Rating: $newUserRating")
 
-                    val newRatingMap = mapOf("rating" to newUserRating, "sum" to newSum, "divider" to newDivider)
-                    db.collection("users").document(taskTaker).update("rating", newRatingMap).addOnSuccessListener {
-                        Log.d("UserRating", "Document updated")
+                    val newRatingMap =
+                        mapOf("rating" to newUserRating, "sum" to newSum, "divider" to newDivider)
+                    db.collection("users").document(taskTaker).update("rating", newRatingMap)
+                        .addOnSuccessListener {
+                            Log.d("UserRating", "Document updated")
 
-                        db.collection("tasks")
-                            .whereEqualTo("name", taskName)
-                            .whereEqualTo("ownerId", taskOwner)
-                            .whereEqualTo("takerId", taskTaker)
-                            .get()
-                            .addOnSuccessListener { documents ->
-                            for (document in documents) {
-                                val taskId = document.id
-                                db.collection("tasks").document(taskId).update("status", "archived")
-                            }
+                            db.collection("tasks")
+                                .whereEqualTo("name", taskName)
+                                .whereEqualTo("ownerId", taskOwner)
+                                .whereEqualTo("takerId", taskTaker)
+                                .get()
+                                .addOnSuccessListener { documents ->
+                                    for (document in documents) {
+                                        val taskId = document.id
+                                        db.collection("tasks").document(taskId)
+                                            .update("status", "archived")
+                                    }
+                                }
                         }
-                    }
                     val intent = Intent(this, FinishedTasksActivity::class.java)
                     this.startActivity(intent)
                 }

@@ -23,6 +23,7 @@ class FullTaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_full_task)
+        Log.i("Opened", "FullTaskActivity")
 
         // Taking data from CardView
         val taskName = intent.getStringExtra("fullTaskName")
@@ -51,7 +52,6 @@ class FullTaskActivity : AppCompatActivity() {
         }
 
         // Adding parameter
-        val currentUserId = ""
         val sharedPreferences: SharedPreferences = this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
         val taskTakerId: String = sharedPreferences.getString("id_key", "default_value").toString()
         var taskId = ""

@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.app.quokka.tasks.FullTaskActivity
@@ -24,11 +23,6 @@ import com.google.firebase.database.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_available_tasks_browser.*
-
-//  Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -67,8 +61,9 @@ class AvailableTasksBrowser : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.i("Opened", "AvailableTasksBrowser")
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate<FragmentAvailableTasksBrowserBinding>(
+        binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_available_tasks_browser,
             container,
@@ -91,7 +86,7 @@ class AvailableTasksBrowser : Fragment() {
             FirestoreRecyclerOptions.Builder<TaskModel1>().setQuery(query, TaskModel1::class.java)
                 .setLifecycleOwner(this).build()
 
-        // SHOULD BE A SEPARATE CLASS FILE
+        // SHOULD BE A SEPARATE CLASS FILE LATER
         val adapter = object : FirestoreRecyclerAdapter<TaskModel1, TaskViewHolder1>(options) {
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder1 {
                 val view: View = LayoutInflater.from(context)
@@ -116,18 +111,15 @@ class AvailableTasksBrowser : Fragment() {
                     model.startDate["year"]
                 )
                 tvStartDate.text = start
-                //tvStartDate.text = model.startDate.values.toString()
                 val end = mapToDate(
                     model.endDate["day"],
                     model.endDate["month"],
                     model.endDate["year"]
                 )
                 tvEndDate.text = end
-                //tvEndDate.text = model.endDate.values.toString()
                 tvPoints.text = model.points.toString()
 
                 holder.itemView.setOnClickListener() {
-                    Toast.makeText(context, "CLICK!!", Toast.LENGTH_SHORT).show()
 
                     val intent = Intent(context, FullTaskActivity::class.java)
                     intent.putExtra("fullTaskName", model.taskName) // put image data in Intent

@@ -24,31 +24,21 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
 
-    // private lateinit var auth: FirebaseAuth
-
     private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_sign_up)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
-
-        // auth = Firebase.auth
+        Log.i("Opened", "SignUpActivity")
 
         binding.signUpButtonSignUpA.setOnClickListener { view ->
-            //insertDataToDatabase()
             showProgressBar()
-
             createDoc(view)
         }
     }
 
     override fun onStart() {
         super.onStart()
-        //val currentUser = auth.currentUser
-        //if (currentUser != null) {
-        //    reload()
-        //}
     }
 
     private fun createDoc(view: View) {
@@ -59,9 +49,7 @@ class SignUpActivity : AppCompatActivity() {
             return
         }
 
-
         Log.i("dblog", "valid user")
-
 
         val name = binding.nameTextEditSignUpA.text.toString().trim()
         val surname = binding.surnameEditTextSignUpA.text.toString().trim()
@@ -87,11 +75,9 @@ class SignUpActivity : AppCompatActivity() {
         Snackbar.make(view, "Snackbar: User created", Snackbar.LENGTH_LONG).show()
 
         Handler().postDelayed({ goToLogIn() }, 1000)
-//        val intent = Intent(this, LogInActivity::class.java)
-//        this.startActivity(intent)
     }
 
-    fun goToLogIn() {
+    private fun goToLogIn() {
         val intent = Intent(this, LogInActivity::class.java)
         this.startActivity(intent)
     }
@@ -121,29 +107,7 @@ class SignUpActivity : AppCompatActivity() {
             binding.emailEditTextSignUpA.error = "Required."
             valid = false
         } else {
-//            val isEmpty = db.collection("users").whereEqualTo("email", email).get().result?.isEmpty
-//            if (isEmpty == true) {
-//                Log.i(TAG, "There are no users with this mail: $isEmpty")
-                binding.emailEditTextSignUpA.error = null
-//            } else {
-//                Log.i(TAG, "User already in db: $isEmpty")
-//                binding.emailEditTextSignUpA.error = "User with this email already exists"
-//                valid = false
-//            }
-            // If email in db
-//            val db = Firebase.firestore
-//
-//            db.collection("users").whereEqualTo("email", email).get().addOnCompleteListener {document ->
-//                if (!document.result?.isEmpty!!) {
-//                    Log.i(TAG, "User already in db: ${document.toString()}")
-//                    binding.emailEditTextSignUpA.error = "User with this email already exists"
-//                    valid = false
-//                } else {
-//                    Log.i(TAG, "There are no users with this mail: $document")
-//                    binding.emailEditTextSignUpA.error = null
-//
-//                }
-//            }
+            binding.emailEditTextSignUpA.error = null
         }
 
         val password = binding.passwordEditTextSignUpA.text.toString()
@@ -174,47 +138,6 @@ class SignUpActivity : AppCompatActivity() {
 
         return valid
     }
-
-
-    private fun createAccount(
-        name: String,
-        username: String,
-        email: String,
-        password: String,
-        passwordCheck: String,
-        address: String,
-        rating: Int
-    ) {
-        Log.d(ContentValues.TAG, "createAccount:$email")
-        if (!validateUser()) {
-            return
-        }
-        showProgressBar()
-        //sign up
-        hideProgressBar()
-    }
-
-    private fun signIn(email: String, password: String) {
-        Log.d(TAG, "signIn:$email")
-        if (!validateUser()) {
-            return
-        }
-        showProgressBar()
-        // sign in
-        hideProgressBar()
-
-    }
-
-//    private fun checkForMultiFactorFailure(e: Exception) {
-//        if (e is FirebaseAuthMultiFactorException) {
-//            Log.w(TAG, "multiFactorFailure", e)
-//            val intent = Intent()
-//            val resolver = e.resolver
-//            intent.putExtra("EXTRA_MFA_RESOLVER", resolver)
-//            setResult(MultiFactorActivity.RESULT_NEEDS_MFA_SIGN_IN, intent)
-//            finish()
-//        }
-//    }
 
     private fun showProgressBar() {
         binding.progressBarSignUpA.visibility = View.VISIBLE

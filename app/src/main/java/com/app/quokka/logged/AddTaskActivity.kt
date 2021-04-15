@@ -32,6 +32,7 @@ class AddTaskActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.i("Opened", "AddTaskActivity")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_task)
 
@@ -67,9 +68,8 @@ class AddTaskActivity : AppCompatActivity() {
 
         val name = binding.taskNameEdit.text.toString().trim()
         val description = binding.taskDescriptionEdit.text.toString()
-        // Change to date format
         val startDate = binding.startDateEdit.text.toString()
-        //var dateStart: Timestamp
+
         val startDateMap = if (startDate == "") {
             dateToTimeMap(getCurrentTime().toString())
         } else {
@@ -93,7 +93,6 @@ class AddTaskActivity : AppCompatActivity() {
         Log.i(TAG, "Points: $points")
 
         val db = Firebase.firestore
-        Log.i(TAG, "I made a database value!!")
 
 
         val task = Task(
@@ -107,7 +106,6 @@ class AddTaskActivity : AppCompatActivity() {
             status = "available"
         )
         Log.i(TAG, "Task was created: $task")
-
 
         // decrease user points
         db.collection("users").document(ownerId).get().addOnSuccessListener { document ->
@@ -141,7 +139,6 @@ class AddTaskActivity : AppCompatActivity() {
         }.addOnFailureListener { e ->
             Log.w("Error adding document", e)
         }
-        // TODO("Change to date format")
     }
 
     private fun dateToTimeMap(date: String): Map<String, Int> {
