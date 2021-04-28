@@ -73,10 +73,10 @@ class UserProfileEditActivity : AppCompatActivity() {
 
         binding.saveProfileButton.setOnClickListener {
 
-            val newName = binding.userNameEdit.text.toString()
-            val newSurname = binding.userSurnameEdit.text.toString()
-            val newEmail = binding.userEmailEdit.text.toString()
-            val newPassword = binding.userPasswordEdit.text.toString()
+            val newName = binding.userNameEdit.text.toString().trim()
+            val newSurname = binding.userSurnameEdit.text.toString().trim()
+            val newEmail = binding.userEmailEdit.text.toString().trim()
+            val newPassword = binding.userPasswordEdit.text.toString().trim()
 
             if (newName.isNotEmpty()) {
                 Log.d(TAG, "New Name: $newName")

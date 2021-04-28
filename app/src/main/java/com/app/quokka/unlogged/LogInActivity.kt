@@ -18,13 +18,11 @@ import com.google.android.material.snackbar.Snackbar
 
 class LogInActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityLogInBinding
     private lateinit var db: FirebaseFirestore
 
     // Shared preferences
     private val sharedPrefFile = "kotlinsharedpreference"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +45,6 @@ class LogInActivity : AppCompatActivity() {
             // Go to SignUpActivity
             this.startActivity(intent1)
         }
-
     }
 
     private fun logIn() {
@@ -91,7 +88,7 @@ class LogInActivity : AppCompatActivity() {
                 }
             }.addOnFailureListener { e ->
                 Log.w(TAG, "Error getting documents: ", e)
-                Toast.makeText(this, "Error getting documents.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Error accessing the database.", Toast.LENGTH_SHORT).show()
             }
 
     }

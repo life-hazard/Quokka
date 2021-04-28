@@ -11,10 +11,12 @@
 
         <include layout="@layout/toolbar" />
 
+
         <RelativeLayout
             android:id="@+id/home_page"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
 
             <ImageButton
                 android:id="@+id/notifyButton"
@@ -25,15 +27,21 @@
                 app:srcCompat="@android:drawable/btn_star_big_on"
                 android:clickable="true"/>
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="55dp">
             <FrameLayout
                 android:id="@+id/fl_wrapper"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/bottom_navigation"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginBottom="0dp">
 
             </FrameLayout>
+            </ScrollView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fAddTaskButton"

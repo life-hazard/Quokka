@@ -9,30 +9,34 @@
         tools:context=".logged.AddTaskActivity"
         >
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/availablePoints"
-                style="@style/text_style"
-                android:layout_width="75dp"
-                android:layout_height="56dp"
-                android:text="@string/number_of_points"
-                android:textAlignment="center"
-                android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.042" />
+<!--            <TextView-->
+<!--                android:id="@+id/availablePoints"-->
+<!--                style="@style/text_style"-->
+<!--                android:layout_width="75dp"-->
+<!--                android:layout_height="56dp"-->
+<!--                android:text="@string/number_of_points"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="32sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.042" />-->
 
-            <ScrollView
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrollView4"
                 android:layout_width="match_parent"
-                android:layout_height="415dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginBottom="100dp"
+                android:layout_height="500dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="10dp"
                 android:fillViewport="true"
                 android:scrollbarStyle="insideInset"
                 android:scrollbars="vertical"
@@ -43,93 +47,190 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/taskNameEdit"
-                        style="@style/text_style"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/nameTextEditSignUpAFrame"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
-                        android:ems="10"
-                        android:hint="@string/task_name_hint"
-                        android:inputType="textPersonName"
-                        android:maxLength="30"
-                        android:paddingTop="@dimen/task_box_padding"
-                        android:paddingEnd="@dimen/task_box_padding" />
+                        android:hint="Task Name">
 
-                    <EditText
-                        android:id="@+id/taskDescriptionEdit"
-                        style="@style/text_style"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:ems="10"
-                        android:gravity="start|top"
-                        android:hint="@string/task_desctiption_hint"
-                        android:inputType="textMultiLine"
-                        android:maxLength="600"
-                        android:paddingTop="@dimen/task_box_padding"
-                        android:paddingEnd="@dimen/task_box_padding" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/taskNameEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:maxLength="35"/>
 
-                    <EditText
-                        android:id="@+id/startDateEdit"
-                        style="@style/text_style"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:ems="10"
-                        android:hint="@string/start_date_hint"
-                        android:inputType="date"
-                        android:paddingTop="@dimen/task_box_padding" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/endDateEdit"
-                        style="@style/text_style"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginRight="32dp"
-                        android:ems="10"
-                        android:hint="@string/end_date_hint"
-                        android:inputType="date"
-                        android:paddingTop="@dimen/task_box_padding" />
+<!--                    <EditText-->
+<!--                        android:id="@+id/taskNameEdit"-->
+<!--                        style="@style/text_style"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="32dp"-->
+<!--                        android:layout_marginRight="32dp"-->
+<!--                        android:ems="10"-->
+<!--                        android:hint="@string/task_name_hint"-->
+<!--                        android:inputType="textPersonName"-->
+<!--                        android:maxLength="30"-->
+<!--                        android:paddingTop="@dimen/task_box_padding"-->
+<!--                        android:paddingEnd="@dimen/task_box_padding" />-->
 
-                    <EditText
-                        android:id="@+id/pointsForTask"
-                        style="@style/text_style"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/taskDescriptionFrame"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
                         android:layout_marginLeft="32dp"
                         android:layout_marginRight="32dp"
-                        android:ems="10"
-                        android:hint="@string/points_for_task_hint"
-                        android:inputType="number"
-                        android:paddingTop="@dimen/task_box_padding"
-                        android:paddingEnd="@dimen/task_box_padding" />
+                        android:hint="Task Description">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/taskDescriptionEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:maxLength="600"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/taskDescriptionEdit"-->
+<!--                        style="@style/text_style"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="32dp"-->
+<!--                        android:layout_marginRight="32dp"-->
+<!--                        android:ems="10"-->
+<!--                        android:gravity="start|top"-->
+<!--                        android:hint="@string/task_desctiption_hint"-->
+<!--                        android:inputType="textMultiLine"-->
+<!--                        android:maxLength="600"-->
+<!--                        android:paddingTop="@dimen/task_box_padding"-->
+<!--                        android:paddingEnd="@dimen/task_box_padding" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/startDateEditFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:hint="Start Date (optional)">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/startDateEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:inputType="date"
+                            android:maxLength="10"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/startDateEdit"-->
+<!--                        style="@style/text_style"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="32dp"-->
+<!--                        android:layout_marginRight="32dp"-->
+<!--                        android:ems="10"-->
+<!--                        android:hint="@string/start_date_hint"-->
+<!--                        android:inputType="date"-->
+<!--                        android:paddingTop="@dimen/task_box_padding" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/endDateEditFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:hint="End Date (optional)">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/endDateEdit"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:inputType="date"
+                            android:maxLength="10"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/endDateEdit"-->
+<!--                        style="@style/text_style"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="32dp"-->
+<!--                        android:layout_marginRight="32dp"-->
+<!--                        android:ems="10"-->
+<!--                        android:hint="@string/end_date_hint"-->
+<!--                        android:inputType="date"-->
+<!--                        android:paddingTop="@dimen/task_box_padding" />-->
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pointsForTaskFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="32dp"
+                        android:layout_marginRight="32dp"
+                        android:hint="Points for the task">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/pointsForTask"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textStart"
+                            android:inputType="date"
+                            android:maxLength="3"/>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/pointsForTask"-->
+<!--                        style="@style/text_style"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginLeft="32dp"-->
+<!--                        android:layout_marginRight="32dp"-->
+<!--                        android:ems="10"-->
+<!--                        android:hint="@string/points_for_task_hint"-->
+<!--                        android:inputType="number"-->
+<!--                        android:paddingTop="@dimen/task_box_padding"-->
+<!--                        android:paddingEnd="@dimen/task_box_padding" />-->
 
                 </LinearLayout>
-            </ScrollView>
+            </androidx.core.widget.NestedScrollView>
 
             <Button
                 android:id="@+id/addButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:text="@string/add_button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/scrollView4" />
+                app:layout_constraintTop_toBottomOf="@id/scrollView4" />
 
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -137,6 +238,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/scrollView4" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </ScrollView>
     </FrameLayout>
 </layout>

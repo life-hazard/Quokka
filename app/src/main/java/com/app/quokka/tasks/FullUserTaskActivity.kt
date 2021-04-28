@@ -96,11 +96,7 @@ class FullUserTaskActivity : AppCompatActivity() {
                 //check if new end date is equal or later then new task date
                 val oldEndDate = dateToTimeMap(taskEnd)
                 val newEndDate = dateToTimeMap(binding.taskEndDateEdit.text.toString())
-                if (isDateValid(oldEndDate, newEndDate) && isDateValid(
-                        oldStartDate,
-                        newStartDate
-                    )
-                ) {
+                if (isDateValid(oldEndDate, newEndDate) && isDateValid(oldStartDate, newStartDate)) {
                     Log.d(TAG, "The dates are valid")
 
                     // Updating this task
@@ -131,11 +127,14 @@ class FullUserTaskActivity : AppCompatActivity() {
                 } else {
                     Log.d(TAG, "The dates are not valid")
                 }
-
                 Log.d(FullTaskActivity.TAG, "Task id: $taskId")
                 Snackbar.make(binding.root, "Task updated.", Snackbar.LENGTH_LONG).show()
                 changeToUneditable()
             }
+
+
+
+
         }
     }
 
@@ -233,32 +232,58 @@ class FullUserTaskActivity : AppCompatActivity() {
         return mapDate
     }
 
-    private fun isDateValid(firstDate: Map<String, Int>, lastDate: Map<String, Int>): Boolean {
-        // old date
-        val oDay = firstDate.getValue("day")
-        val oMonth = firstDate.getValue("month")
-        val oYear = firstDate.getValue("year")
-
-        // new date
-        val nDay = lastDate.getValue("day")
-        val nMonth = lastDate.getValue("month")
-        val nYear = lastDate.getValue("year")
-
-        var valid = false
-
-        if (// day can be equal and bigger | month can be equal or bigger | year can be equal or bigger
-            nDay >= oDay && nMonth >= oMonth && nYear >= oYear ||
-            // day can be anything | month can be bigger | year can be equal or bigger
-            nMonth > oMonth && nYear >= oYear ||
-            // day can be anything | month can be anything | year can be bigger
-            nYear > oYear
-        ) {
-            valid = true
-        }
-        return valid
-    }
+//    private fun isDateValid(firstDate: Map<String, Int>, lastDate: Map<String, Int>): Boolean {
+//        // old date
+//        val oDay = firstDate.getValue("day")
+//        val oMonth = firstDate.getValue("month")
+//        val oYear = firstDate.getValue("year")
+//
+//        // new date
+//        val nDay = lastDate.getValue("day")
+//        val nMonth = lastDate.getValue("month")
+//        val nYear = lastDate.getValue("year")
+//
+//        var valid = false
+//
+//        if (// day can be equal and bigger | month can be equal or bigger | year can be equal or bigger
+//            nDay >= oDay && nMonth >= oMonth && nYear >= oYear ||
+//            // day can be anything | month can be bigger | year can be equal or bigger
+//            nMonth > oMonth && nYear >= oYear ||
+//            // day can be anything | month can be anything | year can be bigger
+//            nYear > oYear
+//        ) {
+//            valid = true
+//        }
+//        return valid
+//    }
 
     companion object {
+
+        fun isDateValid(firstDate: Map<String, Int>, lastDate: Map<String, Int>): Boolean {
+            // old date
+            val oDay = firstDate.getValue("day")
+            val oMonth = firstDate.getValue("month")
+            val oYear = firstDate.getValue("year")
+
+            // new date
+            val nDay = lastDate.getValue("day")
+            val nMonth = lastDate.getValue("month")
+            val nYear = lastDate.getValue("year")
+
+            var valid = false
+
+            if (// day can be equal and bigger | month can be equal or bigger | year can be equal or bigger
+                nDay >= oDay && nMonth >= oMonth && nYear >= oYear ||
+                // day can be anything | month can be bigger | year can be equal or bigger
+                nMonth > oMonth && nYear >= oYear ||
+                // day can be anything | month can be anything | year can be bigger
+                nYear > oYear
+            ) {
+                valid = true
+            }
+            return valid
+        }
+
         const val TAG = "usertask"
     }
 }

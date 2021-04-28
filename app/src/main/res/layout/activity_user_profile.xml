@@ -16,7 +16,7 @@
             android:id="@+id/userIcon"
             android:layout_width="114dp"
             android:layout_height="105dp"
-            android:layout_marginTop="115dp"
+            android:layout_marginTop="105dp"
             android:src="@drawable/user"
             app:layout_constraintEnd_toStartOf="@id/userNameTextFrame"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
             android:id="@+id/userNameTextFrame"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="90dp"
             android:layout_marginStart="160dp"
             android:hint="Name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +95,7 @@
             android:id="@+id/userPasswordTextFrame"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:hint="Password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -156,10 +156,18 @@
             android:id="@+id/UserRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="false"
+            android:contextClickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:saveEnabled="false"
+            android:isIndicator="true"
             app:layout_constraintBottom_toTopOf="@id/editProfileButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userRatingText"/>
+
+
 
         <Button
             android:id="@+id/editProfileButton"
@@ -173,6 +181,6 @@
 
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

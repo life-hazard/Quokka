@@ -57,13 +57,11 @@ class SignUpActivity : AppCompatActivity() {
         val password = binding.passwordEditTextSignUpA.text.toString()
         val address = binding.addressEditTextSignUpA.text.toString()
         val rating = mapOf("sum" to 0f, "divider" to 0f, "rating" to 0f)
-        // user gets 100 points on start
         val points = 100
-
-        val db = Firebase.firestore
 
         val user = User(name, surname, email, password, address, rating, points)
 
+        val db = Firebase.firestore
         db.collection("users").add(user).addOnSuccessListener { documentReference ->
             Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
             Log.i("dblog", "created document")
@@ -72,7 +70,7 @@ class SignUpActivity : AppCompatActivity() {
             Log.i("dblog", "error adding document")
         }
 
-        Snackbar.make(view, "Snackbar: User created", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(view, "User created", Snackbar.LENGTH_LONG).show()
 
         Handler().postDelayed({ goToLogIn() }, 1000)
     }

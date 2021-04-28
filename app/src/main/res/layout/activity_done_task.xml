@@ -3,16 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".tasks.DoneTaskActivity">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/doneTaskNameFrame"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="150dp"
             android:clickable="false"
             android:focusable="false"
             android:hint="Task name"
@@ -132,7 +138,7 @@
             android:id="@+id/doneTaskDoneByFrame"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:clickable="false"
             android:focusable="false"
             android:hint="Done by"
@@ -178,6 +184,7 @@
             android:text="RATE"
             android:textColor="@color/blue_200"
             android:textSize="16sp"
+            android:layout_marginTop="50dp"
             app:layout_constraintBottom_toTopOf="@id/doneTaskUserRatingBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +194,7 @@
             android:id="@+id/doneTaskUserRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="50dp"
             android:numStars="5"
 
             app:layout_constraintBottom_toTopOf="@id/doneButtonConfirm"
@@ -201,10 +208,13 @@
             android:layout_height="wrap_content"
             android:text="CONFIRM"
             android:textSize="16dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/doneTaskUserRatingBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
 </layout>

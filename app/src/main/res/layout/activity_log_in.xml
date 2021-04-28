@@ -12,6 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/emailEditFrame"
             android:layout_width="220dp"
@@ -69,6 +71,16 @@
             app:layout_constraintStart_toEndOf="@+id/logInButton"
             app:layout_constraintTop_toBottomOf="@+id/passwordEditFrame"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/emailEditFrame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logo_round" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </layout>

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.app.quokka.R
 import com.app.quokka.databinding.ActivityAddTaskBinding
+import com.app.quokka.tasks.FullUserTaskActivity
 import com.app.quokka.util.Task
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -62,7 +63,6 @@ class AddTaskActivity : AppCompatActivity() {
 
         val sharedPreferences: SharedPreferences =
             this.getSharedPreferences(sharedPrefFile, Context.MODE_PRIVATE)
-
         val ownerId = sharedPreferences.getString("id_key", "default_value").toString()
         Log.i(TAG, "Task Owner Id value: $ownerId")
 
@@ -94,17 +94,8 @@ class AddTaskActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
-
-        val task = Task(
-            name,
-            description,
-            startDateMap,
-            endDateMap,
-            points,
-            ownerId,
-            takerId = "",
-            status = "available"
-        )
+        val task = Task(name, description, startDateMap, endDateMap, points, ownerId, takerId = "",
+            status = "available")
         Log.i(TAG, "Task was created: $task")
 
         // decrease user points
@@ -141,16 +132,16 @@ class AddTaskActivity : AppCompatActivity() {
         }
     }
 
-    private fun dateToTimeMap(date: String): Map<String, Int> {
-        val day = (date[0].toString() + date[1].toString()).toInt()
-        val month = (date[3].toString() + date[4].toString()).toInt()
-        val year =
-            (date[6].toString() + date[7].toString() + date[8].toString() + date[9].toString()).toInt()
-
-        val mapDate = mapOf("day" to day, "month" to month, "year" to year)
-        Log.i(TAG, "Map of date: ${mapDate.values}")
-        return mapDate
-    }
+//    fun dateToTimeMap(date: String): Map<String, Int> {
+//        val day = (date[0].toString() + date[1].toString()).toInt()
+//        val month = (date[3].toString() + date[4].toString()).toInt()
+//        val year =
+//            (date[6].toString() + date[7].toString() + date[8].toString() + date[9].toString()).toInt()
+//
+//        val mapDate = mapOf("day" to day, "month" to month, "year" to year)
+//        Log.i(TAG, "Map of date: ${mapDate.values}")
+//        return mapDate
+//    }
 
     private fun getCurrentTime(): String? {
         val date = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
@@ -236,25 +227,76 @@ class AddTaskActivity : AppCompatActivity() {
         binding.addButton.visibility = View.VISIBLE
     }
 
-    private fun mapToDate(day: Int?, month: Int?, year: Int?): String {
-        val setDay = if (day.toString().toInt() < 10) {
-            "0$day"
-        } else {
-            "$day"
-        }
-        val setMonth = if (month.toString().toInt() < 10) {
-            "0$month"
-        } else {
-            "$month"
-        }
-        val setYear = "$year"
-
-        val newDate = "$setDay.$setMonth.$setYear"
-        Log.d(UserTasksFragment.TAG, "The map to date is: $newDate")
-        return newDate
-    }
+//    private fun mapToDate(day: Int?, month: Int?, year: Int?): String {
+//        val setDay = if (day.toString().toInt() < 10) {
+//            "0$day"
+//        } else {
+//            "$day"
+//        }
+//        val setMonth = if (month.toString().toInt() < 10) {
+//            "0$month"
+//        } else {
+//            "$month"
+//        }
+//        val setYear = "$year"
+//
+//        val newDate = "$setDay.$setMonth.$setYear"
+//        Log.d(UserTasksFragment.TAG, "The map to date is: $newDate")
+//        return newDate
+//    }
 
     companion object {
+
+        fun dateToTimeMap(date: String): Map<String, Int> {
+//            val day = (date[0].toString() + date[1].toString()).toInt()
+//            val month = (date[3].toString() + date[4].toString()).toInt()
+//            val year =
+//                (date[6].toString() + date[7].toString() + date[8].toString() + date[9].toString()).toInt()
+//
+//            val mapDate = mapOf("day" to day, "month" to month, "year" to year)
+//            Log.i(TAG, "Map of date: ${mapDate.values}")
+//            return mapDate
+            Log.i(TAG, "The Date: $date")
+            val day = (date[0].toString() + date[1].toString()).toInt()
+            val month: Int
+            val year: Int
+
+            if (date.length == 9) {
+                month = date[3].toString().toInt()
+                Log.i(FullUserTaskActivity.TAG, "Date[3] == ${date[3]} month == $month")
+                year =
+                    (date[5].toString() + date[6].toString() + date[7].toString() + date[8].toString()).toInt()
+                Log.i(TAG, "The day: $day, month: $month, year: $year")
+            } else {
+                month = (date[3].toString() + date[4].toString()).toInt()
+                year =
+                    (date[6].toString() + date[7].toString() + date[8].toString() + date[9].toString()).toInt()
+                Log.i(TAG, "The day: $day, month: $month, year: $year")
+            }
+
+            val mapDate = mapOf("day" to day, "month" to month, "year" to year)
+            Log.i(TAG, "Map of date: ${mapDate.values}")
+            return mapDate
+        }
+
+        fun mapToDate(day: Int?, month: Int?, year: Int?): String {
+            val setDay = if (day.toString().toInt() < 10) {
+                "0$day"
+            } else {
+                "$day"
+            }
+            val setMonth = if (month.toString().toInt() < 10) {
+                "0$month"
+            } else {
+                "$month"
+            }
+            val setYear = "$year"
+
+            val newDate = "$setDay.$setMonth.$setYear"
+            Log.d(UserTasksFragment.TAG, "The map to date is: $newDate")
+            return newDate
+        }
+
         const val TAG = "addTask"
     }
 }

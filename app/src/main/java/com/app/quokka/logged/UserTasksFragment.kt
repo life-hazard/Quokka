@@ -81,7 +81,8 @@ class UserTasksFragment : Fragment() {
 
         Log.d(TAG, "The id from shared preferences: ${sharedIdValue.toString()}")
 
-        val query = db.collection("tasks").whereEqualTo("ownerId", sharedIdValue)
+        val query = db.collection("tasks")
+            .whereEqualTo("ownerId", sharedIdValue)
         val options = FirestoreRecyclerOptions.Builder<UserTaskModel>().setQuery(
             query,
             UserTaskModel::class.java
