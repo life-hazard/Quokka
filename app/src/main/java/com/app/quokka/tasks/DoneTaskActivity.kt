@@ -31,7 +31,7 @@ class DoneTaskActivity : AppCompatActivity() {
         val taskOwner = intent.getStringExtra("fullTaskOwnerId").toString()
         val taskTaker = intent.getStringExtra("fullTaskTakerId").toString()
 
-        // Showing data in .xml
+        // Showing data in .xml 
         binding.doneTaskNameEdit.setText(taskName)
 
         // Taking taker name from db
